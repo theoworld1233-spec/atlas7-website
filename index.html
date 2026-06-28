@@ -144,16 +144,25 @@
 
     <!-- Navigation Header (Asymmetric Layout / Architectural Grid System) -->
     <nav id="navbar" class="fixed top-0 left-0 w-full h-24 z-50 flex items-center justify-between px-6 md:px-16 border-b border-transparent transition-all duration-500">
-        <!-- Logo Brand Block - Pure Arial Typography with drafting brackets -->
-        <a href="#hero" class="relative flex flex-col tracking-wider group select-none py-2 px-4" aria-label="Atlas-7 Homepage">
+        <!-- Logo Brand Block - Dynamic Day/Night Local Images with drafting brackets -->
+        <a href="#hero" class="relative flex items-center tracking-wider group select-none py-2 px-4" aria-label="Atlas-7 Homepage">
             <span class="drafting-bracket bracket-tl"></span>
             <span class="drafting-bracket bracket-tr"></span>
             <span class="drafting-bracket bracket-bl"></span>
             <span class="drafting-bracket bracket-br"></span>
             
-            <div class="flex flex-col justify-center items-start">
-                <span class="text-xl md:text-2xl font-bold tracking-[0.25em] text-atlas-graphite dark:text-white font-arial">ATLAS 7</span>
-                <span class="text-[9px] md:text-[10px] font-semibold tracking-[0.45em] text-atlas-gold mt-1 font-arial">ARCHITECTS</span>
+            <div class="relative h-12 flex items-center justify-center">
+                <!-- Day Time Logo -->
+                <img src="images/logoday .jpg" 
+                     alt="Atlas-7 Day Logo" 
+                     class="h-10 md:h-12 w-auto object-contain transition-opacity duration-500 dark:hidden"
+                     onerror="this.onerror=null; console.warn('Local day logo not found at images/logoday .jpg');">
+                
+                <!-- Night Time Logo -->
+                <img src="images/logodnight .jpg" 
+                     alt="Atlas-7 Night Logo" 
+                     class="h-10 md:h-12 w-auto object-contain transition-opacity duration-500 hidden dark:block"
+                     onerror="this.onerror=null; console.warn('Local night logo not found at images/logodnight .jpg');">
             </div>
         </a>
 
