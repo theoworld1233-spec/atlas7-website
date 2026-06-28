@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlas-7 Architects | Precision Meets Vision</title>
+    
     <!-- Google Fonts: Cormorant Garamond for luxury serif headlines, Inter for geometric sans body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Enables manual class-based twilight trigger
+            darkMode: 'class', // Enables manual class-based theme toggle
             theme: {
                 extend: {
                     colors: {
@@ -36,14 +37,22 @@
             }
         }
     </script>
+    
     <style>
-        .backdrop-blur-glass {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        /* CSS variables to adjust the luxury transition configurations globally */
+        :root {
+            --transition-speed: 0.5s; /* Snappy yet smooth transition timing */
+            --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1); /* Custom cubic-bezier easing */
         }
+
+        .backdrop-blur-glass {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        
         /* Custom fine-line scrollbar matching architectural guidelines */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
             background: #F6F5F2;
@@ -58,21 +67,22 @@
             background: #D4AF37;
         }
         
-        /* Premium custom micro-timings for all transformations */
-        body, nav, div, section, p, h1, h2, h3, h4, span, button, select, input, textarea, a {
-            transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        /* Dynamic transition system utilizing globally customizable easing variables */
+        body, nav, div, section, p, h1, h2, h3, h4, span, button, select, input, textarea, a, svg {
+            transition: background-color var(--transition-speed) var(--ease-luxury), 
+                        border-color var(--transition-speed) var(--ease-luxury), 
+                        color var(--transition-speed) var(--ease-luxury), 
+                        box-shadow var(--transition-speed) var(--ease-luxury),
+                        transform var(--transition-speed) var(--ease-luxury),
+                        letter-spacing var(--transition-speed) var(--ease-luxury),
+                        opacity var(--transition-speed) var(--ease-luxury);
         }
         
         .slider-handle-input::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: transparent;
             cursor: ew-resize;
         }
@@ -80,42 +90,42 @@
         /* Hero parallax layout panning animations */
         @keyframes kenBurnsLoop {
             0% { transform: scale(1.02) translate(0, 0); }
-            50% { transform: scale(1.08) translate(-0.3%, -0.3%); }
+            50% { transform: scale(1.06) translate(-0.2%, -0.2%); }
             100% { transform: scale(1.02) translate(0, 0); }
         }
         .ken-burns-bg {
-            animation: kenBurnsLoop 28s infinite ease-in-out;
+            animation: kenBurnsLoop 24s infinite ease-in-out;
+        }
+
+        /* CAD blueprint mesh exclusively for Night mode (Invisible in light mode) */
+        .blueprint-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(212, 175, 55, 0.015) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(212, 175, 55, 0.015) 1px, transparent 1px);
         }
 
         /* Dynamic engineering drafting corners */
         .drafting-bracket {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-color: #D4AF37;
             border-style: solid;
-            opacity: 0.25;
+            opacity: 0.2;
         }
-        .bracket-tl { top: 0; left: 0; border-width: 1px 0 0 1px; transform: translate(-3px, -3px); }
-        .bracket-tr { top: 0; right: 0; border-width: 1px 1px 0 0; transform: translate(3px, -3px); }
-        .bracket-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; transform: translate(-3px, 3px); }
-        .bracket-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; transform: translate(3px, 3px); }
+        .bracket-tl { top: 0; left: 0; border-width: 1px 0 0 1px; transform: translate(-4px, -4px); }
+        .bracket-tr { top: 0; right: 0; border-width: 1px 1px 0 0; transform: translate(4px, -4px); }
+        .bracket-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; transform: translate(-4px, 4px); }
+        .bracket-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; transform: translate(4px, 4px); }
 
         .group:hover .drafting-bracket {
             opacity: 1;
             border-color: #D4AF37;
         }
-        .group:hover .bracket-tl { transform: translate(1px, 1px); }
-        .group:hover .bracket-tr { transform: translate(-1px, 1px); }
-        .group:hover .bracket-bl { transform: translate(1px, -1px); }
-        .group:hover .bracket-br { transform: translate(-1px, -1px); }
-
-        /* Luminous blueprint mesh exclusively for Night mode */
-        .blueprint-grid {
-            background-size: 30px 30px;
-            background-image: linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
-        }
+        .group:hover .bracket-tl { transform: translate(2px, 2px); }
+        .group:hover .bracket-tr { transform: translate(-2px, 2px); }
+        .group:hover .bracket-bl { transform: translate(2px, -2px); }
+        .group:hover .bracket-br { transform: translate(-2px, -2px); }
     </style>
     <script>
         // Synchronized system state retrieval
@@ -142,39 +152,39 @@
             <span class="drafting-bracket bracket-br"></span>
             
             <div class="flex flex-col justify-center items-start">
-                <span class="text-lg md:text-xl font-bold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg font-arial">ATLAS 7</span>
-                <span class="text-[8px] md:text-[9px] font-semibold tracking-[0.45em] text-atlas-gold mt-0.5 font-arial">ARCHITECTS</span>
+                <span class="text-xl md:text-2xl font-bold tracking-[0.25em] text-atlas-graphite dark:text-white font-arial">ATLAS 7</span>
+                <span class="text-[9px] md:text-[10px] font-semibold tracking-[0.45em] text-atlas-gold mt-1 font-arial">ARCHITECTS</span>
             </div>
         </a>
 
         <!-- Center Desktop Navigation: Curated Architectural Index Grid -->
-        <div class="hidden lg:flex items-center space-x-10">
-            <a href="#projects" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">01</span>
+        <div class="hidden lg:flex items-center space-x-12">
+            <a href="#projects" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">01</span>
                 <span>Projects</span>
             </a>
-            <a href="#manifesto" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">02</span>
+            <a href="#manifesto" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">02</span>
                 <span>Studio</span>
             </a>
-            <a href="#sustainability" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">03</span>
+            <a href="#sustainability" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">03</span>
                 <span>Sustainability</span>
             </a>
-            <a href="#services" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">04</span>
+            <a href="#services" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">04</span>
                 <span>Services</span>
             </a>
-            <a href="#founder" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">05</span>
+            <a href="#founder" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">05</span>
                 <span>Founder</span>
             </a>
-            <a href="#process" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">06</span>
+            <a href="#process" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">06</span>
                 <span>Process</span>
             </a>
-            <a href="#contact" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">07</span>
+            <a href="#contact" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">07</span>
                 <span>Contact</span>
             </a>
         </div>
@@ -197,17 +207,17 @@
 
             <!-- Minimalist Ghost CTA button -->
             <div class="hidden lg:flex items-center">
-                <a href="#contact" class="relative group overflow-hidden px-5 py-2.5 border border-atlas-graphite dark:border-atlas-bg rounded-none text-[10px] font-bold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg transition-all duration-500">
+                <a href="#contact" class="relative group overflow-hidden px-6 py-3 border border-atlas-graphite dark:border-white rounded-none text-[10px] font-bold tracking-[0.25em] text-atlas-graphite dark:text-white transition-all duration-500">
                     <span class="relative z-10 group-hover:text-atlas-bg dark:group-hover:text-atlas-dark transition-colors duration-500">START A PROJECT</span>
-                    <span class="absolute inset-0 bg-atlas-graphite dark:bg-atlas-bg transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
+                    <span class="absolute inset-0 bg-atlas-graphite dark:bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
                 </a>
             </div>
 
             <!-- Mobile Drawer Menu Trigger -->
             <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-between h-5 w-6 focus:outline-none z-50" aria-label="Toggle Menu">
-                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-transform duration-300 origin-left" id="bar1"></span>
-                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-opacity duration-300" id="bar2"></span>
-                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-transform duration-300 origin-left" id="bar3"></span>
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-white transition-transform duration-300 origin-left" id="bar1"></span>
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-white transition-opacity duration-300" id="bar2"></span>
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-white transition-transform duration-300 origin-left" id="bar3"></span>
             </button>
         </div>
     </nav>
@@ -284,20 +294,19 @@
         </div>
     </header>
 
-
     <!-- Section 02: Featured Projects (The Structural Hierarchy) -->
     <section id="projects" class="py-24 md:py-32 px-6 md:px-20 max-w-[1440px] mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24">
             <div class="max-w-xl">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">PORTFOLIO INDEX</span>
-                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">Selected Works</h2>
+                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-white">Selected Works</h2>
             </div>
             <!-- Dynamic Category Filter Links -->
             <div class="flex flex-wrap gap-2 md:gap-4 mt-6 md:mt-0 border-b border-atlas-stone/40 dark:border-white/10 pb-2 md:pb-0">
-                <button onclick="filterPortfolio('all', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-atlas-bg text-atlas-graphite dark:text-atlas-bg transition-all duration-300">ALL WORK (15+)</button>
-                <button onclick="filterPortfolio('built', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">REALIZED BUILT (3)</button>
-                <button onclick="filterPortfolio('concept', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">CONCEPTS (8)</button>
-                <button onclick="filterPortfolio('interior', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">INTERIORS (5)</button>
+                <button onclick="filterPortfolio('all', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-white text-atlas-graphite dark:text-white transition-all duration-300">ALL WORK (15+)</button>
+                <button onclick="filterPortfolio('built', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-white transition-all duration-300">REALIZED BUILT (3)</button>
+                <button onclick="filterPortfolio('concept', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-white transition-all duration-300">CONCEPTS (8)</button>
+                <button onclick="filterPortfolio('interior', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-white transition-all duration-300">INTERIORS (5)</button>
             </div>
         </div>
 
@@ -318,7 +327,7 @@
                 </div>
                 <div class="mt-6 flex justify-between items-start">
                     <div>
-                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Horizon Residence</h3>
+                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-white group-hover:text-atlas-gold transition-colors duration-300">The Horizon Residence</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Realized Residence &bull; 2025</p>
                     </div>
                     <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">01 / PROJECTS</span>
@@ -339,7 +348,7 @@
                 </div>
                 <div class="mt-6 flex justify-between items-start">
                     <div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Vertex Villa</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white group-hover:text-atlas-gold transition-colors duration-300">The Vertex Villa</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Conceptual Model &bull; 2026</p>
                     </div>
                     <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">02 / PROJECTS</span>
@@ -360,7 +369,7 @@
                 </div>
                 <div class="mt-6 flex justify-between items-start">
                     <div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Nexus Atrium</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white group-hover:text-atlas-gold transition-colors duration-300">The Nexus Atrium</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Oromia, Ethiopia &bull; Mixed-Use Built &bull; 2024</p>
                     </div>
                     <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">03 / PROJECTS</span>
@@ -381,7 +390,7 @@
                 </div>
                 <div class="mt-6 flex justify-between items-start">
                     <div>
-                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">Sky Courtyard Residence</h3>
+                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-white group-hover:text-atlas-gold transition-colors duration-300">Sky Courtyard Residence</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Concept Interior &bull; 2026</p>
                     </div>
                     <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">04 / PROJECTS</span>
@@ -390,7 +399,6 @@
 
         </div>
     </section>
-
 
     <!-- Section 03: Interactive Before/After Transformation Slider -->
     <section class="py-24 bg-atlas-dark text-white overflow-hidden">
@@ -459,12 +467,11 @@
         </div>
     </section>
 
-
     <!-- Section 04: Studio Manifesto (The Pure Massing) -->
-    <section id="manifesto" class="py-24 md:py-32 bg-atlas-bg dark:bg-atlas-dark/95 flex items-center px-6 md:px-20">
+    <section id="manifesto" class="py-24 md:py-32 bg-atlas-bg dark:bg-atlas-dark flex items-center px-6 md:px-20">
         <div class="max-w-5xl mx-auto w-full text-center">
             <span class="text-xs font-semibold tracking-[0.25em] text-atlas-gold uppercase mb-6 block">MANIFESTO</span>
-            <p class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-atlas-graphite dark:text-atlas-bg leading-snug md:leading-[1.25] mb-12">
+            <p class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-atlas-graphite dark:text-white leading-snug md:leading-[1.25] mb-12">
                 "Architecture is more than the creation of buildings. It is the shaping of experiences, identities, and enduring value."
             </p>
             <div class="w-20 h-[1px] bg-atlas-gold mx-auto mb-12"></div>
@@ -480,13 +487,12 @@
         </div>
     </section>
 
-
     <!-- Section 05: Services Grid (Core Capabilities) -->
     <section id="services" class="py-24 md:py-32 bg-atlas-stone/25 dark:bg-white/5 px-6 md:px-20 border-t border-b border-atlas-stone/30 dark:border-white/10">
         <div class="max-w-[1440px] mx-auto">
             <div class="max-w-xl mb-16 md:mb-24">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">EXPERTISE</span>
-                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">Our Capabilities</h2>
+                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-white">Our Capabilities</h2>
             </div>
 
             <!-- Services Cards Layout -->
@@ -499,7 +505,7 @@
                         <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                         </div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Architecture</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white mb-4">Architecture</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
                             From context-driven conceptual frameworks to rigorous technical execution, we design contemporary structures that harmonize spatial efficiency with bold geometric expression.
                         </p>
@@ -513,7 +519,7 @@
                         <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                         </div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Interior Design</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white mb-4">Interior Design</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
                             Crafting tailored interior volumes where material textures, custom ergonomics, and natural lighting systems act as a seamless, high-performance extension of the core envelope.
                         </p>
@@ -527,7 +533,7 @@
                         <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                         </div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Architectural Visualization</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white mb-4">Architectural Visualization</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
                             Translating unbuilt structural concepts into hyper-precise, photorealistic digital frames, enabling homeowners and developers to confidently experience spaces before breaking ground.
                         </p>
@@ -541,7 +547,7 @@
                         <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
-                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Construction Supervision</h3>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-white mb-4">Construction Supervision</h3>
                         <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
                             Ensuring design intent is absolute on the structural footprint. We provide meticulous field oversight, engineering detail validation, and qualitative hand-off protection.
                         </p>
@@ -553,8 +559,7 @@
         </div>
     </section>
 
-
-    <!-- Section 06: Experience Metrics Section -->
+    <!-- Experience Metrics Section -->
     <section class="py-20 bg-atlas-dark text-white border-b border-atlas-stone/10 dark:border-white/5">
         <div class="max-w-[1440px] mx-auto px-6 md:px-20 grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             <div class="text-center lg:border-r lg:border-atlas-stone/10 dark:lg:border-white/5">
@@ -576,7 +581,6 @@
         </div>
     </section>
 
-
     <!-- Section 07: Founder Spotlight (The Practice Core) -->
     <section id="founder" class="py-24 md:py-32 bg-atlas-bg dark:bg-atlas-dark px-6 md:px-20 max-w-[1440px] mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -587,7 +591,7 @@
                     <img src="https://i.pinimg.com/736x/a9/d2/ae/a9d2aeebf67deb08ebbdcf73210d3af9.jpg" 
                          onerror="this.onerror=null; this.src='AA.jpeg';"
                          alt="Architect Tewodros Genene" 
-                         class="w-full h-full object-cover filter grayscale contrast-115 transition-transform duration-700 ease-out group-hover:scale-103 animate-fade-in"
+                         class="w-full h-full object-cover filter grayscale contrast-[1.15] transition-transform duration-700 ease-out group-hover:scale-105"
                          loading="lazy">
                     <div class="absolute inset-0 bg-atlas-dark/10 mix-blend-overlay"></div>
                     <div class="absolute bottom-6 left-6 right-6 bg-atlas-dark/95 dark:bg-black/95 backdrop-blur-glass p-6 rounded-xl border border-white/10">
@@ -600,7 +604,7 @@
             <!-- Right Side: Narrative Core Strategy -->
             <div class="lg:col-span-7 flex flex-col items-start justify-center">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2">FOUNDER STORY</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg mb-8">Architect Tewodros Genene</h2>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-white mb-8">Architect Tewodros Genene</h2>
                 
                 <div class="space-y-6 text-base md:text-lg text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed max-w-2xl">
                     <p>
@@ -625,7 +629,7 @@
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-4 block">ENVIRONMENTAL VISION</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg mb-6">Built for the Next Generation</h2>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-white mb-6">Built for the Next Generation</h2>
                 <p class="text-base text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed">
                     At Atlas-7, we recognize that our footprint defines the legacy of Oromia's landscape. Our architectural approach integrates passive solar strategies, locally sourced materials, and water-reclamation systems to ensure that every structure functions as a high-performance ecosystem, not just a static shelter.
                 </p>
@@ -642,7 +646,7 @@
         <div class="max-w-5xl mx-auto">
             <div class="max-w-xl mb-16 text-center mx-auto">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">WORKFLOW</span>
-                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">The Blueprint Loop</h2>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-white">The Blueprint Loop</h2>
             </div>
 
             <!-- Vertical Timeline Accordions -->
@@ -653,9 +657,9 @@
                     <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(1)">
                         <div class="flex items-center space-x-6">
                             <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">01</span>
-                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Discovery & Brief Alignment</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-white">Discovery & Brief Alignment</span>
                         </div>
-                        <span id="process-icon-1" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                        <span id="process-icon-1" class="transform transition-transform duration-300 text-atlas-graphite dark:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </span>
                     </button>
@@ -671,9 +675,9 @@
                     <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(2)">
                         <div class="flex items-center space-x-6">
                             <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">02</span>
-                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Concept Design & Volumetric Strategy</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-white">Concept Design & Volumetric Strategy</span>
                         </div>
-                        <span id="process-icon-2" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                        <span id="process-icon-2" class="transform transition-transform duration-300 text-atlas-graphite dark:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </span>
                     </button>
@@ -689,9 +693,9 @@
                     <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(3)">
                         <div class="flex items-center space-x-6">
                             <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">03</span>
-                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Design Development & Render Exploration</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-white">Design Development & Render Exploration</span>
                         </div>
-                        <span id="process-icon-3" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                        <span id="process-icon-3" class="transform transition-transform duration-300 text-atlas-graphite dark:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </span>
                     </button>
@@ -707,9 +711,9 @@
                     <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(4)">
                         <div class="flex items-center space-x-6">
                             <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">04</span>
-                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Technical Blueprint Documentation</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-white">Technical Blueprint Documentation</span>
                         </div>
-                        <span id="process-icon-4" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                        <span id="process-icon-4" class="transform transition-transform duration-300 text-atlas-graphite dark:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </span>
                     </button>
@@ -725,9 +729,9 @@
                     <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(5)">
                         <div class="flex items-center space-x-6">
                             <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">05</span>
-                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Rigorous Construction Supervision</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-white">Rigorous Construction Supervision</span>
                         </div>
-                        <span id="process-icon-5" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                        <span id="process-icon-5" class="transform transition-transform duration-300 text-atlas-graphite dark:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </span>
                     </button>
@@ -741,7 +745,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Section 09: Contact Vault (Let's Create Something Exceptional) -->
     <section id="contact" class="py-24 md:py-32 bg-atlas-dark text-white relative overflow-hidden">
@@ -870,7 +873,6 @@
         </div>
     </section>
 
-
     <!-- Section 10: Footer (The Ground Line) -->
     <footer class="bg-atlas-dark text-white pt-16 pb-8 border-t border-atlas-stone/10 dark:border-white/5 px-6 md:px-20">
         <div class="max-w-[1440px] mx-auto flex flex-col justify-between h-full">
@@ -943,7 +945,7 @@
             <!-- SECTION 01: Hero Header and Cinematic Frame -->
             <div class="space-y-6">
                 <div>
-                    <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg" id="drawer-project-title">Project Title Placeholder</h2>
+                    <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-white" id="drawer-project-title">Project Title Placeholder</h2>
                     <p class="text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 mt-2 font-sans" id="drawer-project-meta">Location &bull; Year &bull; Status</p>
                 </div>
                 <div class="w-full aspect-[16:10] rounded-2xl overflow-hidden bg-atlas-dark relative shadow-lg">
@@ -963,27 +965,27 @@
                     </p>
                 </div>
                 <div class="md:col-span-4 bg-atlas-stone/20 dark:bg-white/5 p-6 rounded-xl border border-atlas-stone/40 dark:border-white/10">
-                    <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg uppercase mb-6">Specification Deck</h3>
+                    <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-graphite dark:text-white uppercase mb-6">Specification Deck</h3>
                     <div class="space-y-4 text-xs font-sans">
                         <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
                             <span class="text-atlas-muted dark:text-atlas-stone/60">TYPOLOGY</span>
-                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-typology">Commercial</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-white text-right" id="spec-typology">Commercial</span>
                         </div>
                         <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
                             <span class="text-atlas-muted dark:text-atlas-stone/60">CONFIGURATION</span>
-                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-config">Semi-Basement + G+2</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-white text-right" id="spec-config">Semi-Basement + G+2</span>
                         </div>
                         <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
                             <span class="text-atlas-muted dark:text-atlas-stone/60">LOCATION</span>
-                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-location">Adama, Ethiopia</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-white text-right" id="spec-location">Adama, Ethiopia</span>
                         </div>
                         <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
                             <span class="text-atlas-muted dark:text-atlas-stone/60">BUILT AREA</span>
-                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-area">450 m²</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-white text-right" id="spec-area">450 m²</span>
                         </div>
                         <div class="flex justify-between pb-2">
                             <span class="text-atlas-muted dark:text-atlas-stone/60">SCOPE</span>
-                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-scope">Architecture</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-white text-right" id="spec-scope">Architecture</span>
                         </div>
                     </div>
                 </div>
@@ -993,7 +995,7 @@
             <div class="space-y-6">
                 <div>
                     <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2">TECHNICAL TRANSPARENCY</h3>
-                    <h4 class="font-serif text-2xl md:text-3xl font-light text-atlas-graphite dark:text-atlas-bg">Isometric Section Drawing</h4>
+                    <h4 class="font-serif text-2xl md:text-3xl font-light text-atlas-graphite dark:text-white">Isometric Section Drawing</h4>
                 </div>
                 <div class="w-full aspect-[16:9] bg-atlas-dark/95 border border-atlas-stone dark:border-white/10 rounded-2xl p-8 flex items-center justify-center">
                     <!-- Clean SVG blueprint layout of floor levels for technical authority -->
@@ -1048,11 +1050,11 @@
     <!-- Complete Philosophy Drawer Modal -->
     <div id="philosophy-modal" class="fixed inset-0 bg-atlas-dark/60 z-50 backdrop-blur-glass flex items-center justify-center p-6 hidden">
         <div class="bg-atlas-bg dark:bg-atlas-dark rounded-2xl max-w-2xl w-full p-8 md:p-12 relative border border-atlas-stone dark:border-white/10 shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="togglePhilosophyModal()" class="absolute top-6 right-6 text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold focus:outline-none">
+            <button onclick="togglePhilosophyModal()" class="absolute top-6 right-6 text-atlas-graphite dark:text-white hover:text-atlas-gold focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
             <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">STUDIO PHILOSOPHY</span>
-            <h3 class="font-serif text-3xl font-light text-atlas-graphite dark:text-atlas-bg mb-6">Tewodros Genene Letter</h3>
+            <h3 class="font-serif text-3xl font-light text-atlas-graphite dark:text-white mb-6">Tewodros Genene Letter</h3>
             
             <div class="space-y-6 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/70 leading-relaxed font-light">
                 <p>
@@ -1068,14 +1070,13 @@
             
             <div class="mt-8 pt-6 border-t border-atlas-stone/40 dark:border-white/10 flex items-center justify-between">
                 <div>
-                    <span class="font-serif text-lg font-bold text-atlas-graphite dark:text-atlas-bg block">Architect Tewodros Genene</span>
+                    <span class="font-serif text-lg font-bold text-atlas-graphite dark:text-white block">Architect Tewodros Genene</span>
                     <span class="text-xs text-atlas-muted dark:text-atlas-stone/60">Principal, Atlas-7 Architects</span>
                 </div>
                 <div class="text-[22px] font-serif italic text-atlas-gold">Tewodros G.</div>
             </div>
         </div>
     </div>
-
 
     <!-- Core Client-Side JavaScript Logic -->
     <script>
@@ -1206,9 +1207,9 @@
             
             // Clean active border indicators matching dark mode variables
             filterBtns.forEach(btn => {
-                btn.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300";
+                btn.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-white transition-all duration-300";
             });
-            buttonEl.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-atlas-bg text-atlas-graphite dark:text-atlas-bg transition-all duration-300";
+            buttonEl.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-white text-atlas-graphite dark:text-white transition-all duration-300";
 
             // Filter animations
             items.forEach(item => {
