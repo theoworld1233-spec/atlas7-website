@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas-7 Architects | Precision Meets Vision</title>
+    <!-- Google Fonts: Cormorant Garamond for luxury serif headlines, Inter for geometric sans body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables manual class-based twilight trigger
+            theme: {
+                extend: {
+                    colors: {
+                        atlas: {
+                            bg: '#F6F5F2',       /* Premium soft architectural paper white */
+                            dark: '#0B0C0E',     /* Midnight Obsidian Slate */
+                            panel: '#12151A',    /* Dark theme control panel card color */
+                            gold: '#D4AF37',     /* Metallic gold precision accent */
+                            stone: '#D0CFC9',    /* Hairline blueprint layout separator */
+                            graphite: '#1B1C1E', /* High-contrast matte text */
+                            muted: '#6E7072'     /* Secondary technical layout grey */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        arial: ['Arial', 'Helvetica', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .backdrop-blur-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Custom fine-line scrollbar matching architectural guidelines */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F6F5F2;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0B0C0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1B1C1E;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+        }
+        
+        /* Premium custom micro-timings for all transformations */
+        body, nav, div, section, p, h1, h2, h3, h4, span, button, select, input, textarea, a {
+            transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .slider-handle-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            cursor: ew-resize;
+        }
+
+        /* Hero parallax layout panning animations */
+        @keyframes kenBurnsLoop {
+            0% { transform: scale(1.02) translate(0, 0); }
+            50% { transform: scale(1.08) translate(-0.3%, -0.3%); }
+            100% { transform: scale(1.02) translate(0, 0); }
+        }
+        .ken-burns-bg {
+            animation: kenBurnsLoop 28s infinite ease-in-out;
+        }
+
+        /* Dynamic engineering drafting corners */
+        .drafting-bracket {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-color: #D4AF37;
+            border-style: solid;
+            opacity: 0.25;
+        }
+        .bracket-tl { top: 0; left: 0; border-width: 1px 0 0 1px; transform: translate(-3px, -3px); }
+        .bracket-tr { top: 0; right: 0; border-width: 1px 1px 0 0; transform: translate(3px, -3px); }
+        .bracket-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; transform: translate(-3px, 3px); }
+        .bracket-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; transform: translate(3px, 3px); }
+
+        .group:hover .drafting-bracket {
+            opacity: 1;
+            border-color: #D4AF37;
+        }
+        .group:hover .bracket-tl { transform: translate(1px, 1px); }
+        .group:hover .bracket-tr { transform: translate(-1px, 1px); }
+        .group:hover .bracket-bl { transform: translate(1px, -1px); }
+        .group:hover .bracket-br { transform: translate(-1px, -1px); }
+
+        /* Luminous blueprint mesh exclusively for Night mode */
+        .blueprint-grid {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+        }
+    </style>
+    <script>
+        // Synchronized system state retrieval
+        (function() {
+            const savedTheme = localStorage.getItem('atlas-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="bg-atlas-bg text-atlas-graphite dark:bg-atlas-dark dark:text-atlas-bg font-sans antialiased overflow-x-hidden blueprint-grid">
+
+    <!-- Navigation Header (Asymmetric Layout / Architectural Grid System) -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full h-24 z-50 flex items-center justify-between px-6 md:px-16 border-b border-transparent transition-all duration-500">
+        <!-- Logo Brand Block - Pure Arial Typography with drafting brackets -->
+        <a href="#hero" class="relative flex flex-col tracking-wider group select-none py-2 px-4" aria-label="Atlas-7 Homepage">
+            <span class="drafting-bracket bracket-tl"></span>
+            <span class="drafting-bracket bracket-tr"></span>
+            <span class="drafting-bracket bracket-bl"></span>
+            <span class="drafting-bracket bracket-br"></span>
+            
+            <div class="flex flex-col justify-center items-start">
+                <span class="text-lg md:text-xl font-bold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg font-arial">ATLAS 7</span>
+                <span class="text-[8px] md:text-[9px] font-semibold tracking-[0.45em] text-atlas-gold mt-0.5 font-arial">ARCHITECTS</span>
+            </div>
+        </a>
+
+        <!-- Center Desktop Navigation: Curated Architectural Index Grid -->
+        <div class="hidden lg:flex items-center space-x-10">
+            <a href="#projects" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">01</span>
+                <span>Projects</span>
+            </a>
+            <a href="#manifesto" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">02</span>
+                <span>Studio</span>
+            </a>
+            <a href="#sustainability" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">03</span>
+                <span>Sustainability</span>
+            </a>
+            <a href="#services" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">04</span>
+                <span>Services</span>
+            </a>
+            <a href="#founder" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">05</span>
+                <span>Founder</span>
+            </a>
+            <a href="#process" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">06</span>
+                <span>Process</span>
+            </a>
+            <a href="#contact" class="group/item flex items-baseline space-x-1.5 text-[11px] font-semibold tracking-[0.15em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/50 group-hover/item:text-atlas-gold">07</span>
+                <span>Contact</span>
+            </a>
+        </div>
+
+        <!-- Right Side: Interaction & Dynamic CTA Control Panel -->
+        <div class="flex items-center space-x-6">
+            <!-- Theme Toggle Dial Mechanism -->
+            <button onclick="toggleTheme()" class="relative p-2.5 rounded-full bg-atlas-stone/20 dark:bg-white/5 border border-atlas-stone/40 dark:border-white/10 hover:border-atlas-gold dark:hover:border-atlas-gold overflow-hidden group focus:outline-none" aria-label="Toggle Theme">
+                <div class="relative w-5 h-5 flex items-center justify-center">
+                    <!-- Day Sun Icon -->
+                    <svg id="sun-icon" class="w-5 h-5 text-atlas-gold transition-all duration-500 transform dark:-rotate-90 dark:opacity-0 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+                    </svg>
+                    <!-- Night Moon Icon -->
+                    <svg id="moon-icon" class="w-4 h-4 text-atlas-gold transition-all duration-500 transform rotate-90 opacity-0 dark:rotate-0 dark:opacity-100 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </div>
+            </button>
+
+            <!-- Minimalist Ghost CTA button -->
+            <div class="hidden lg:flex items-center">
+                <a href="#contact" class="relative group overflow-hidden px-5 py-2.5 border border-atlas-graphite dark:border-atlas-bg rounded-none text-[10px] font-bold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg transition-all duration-500">
+                    <span class="relative z-10 group-hover:text-atlas-bg dark:group-hover:text-atlas-dark transition-colors duration-500">START A PROJECT</span>
+                    <span class="absolute inset-0 bg-atlas-graphite dark:bg-atlas-bg transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
+                </a>
+            </div>
+
+            <!-- Mobile Drawer Menu Trigger -->
+            <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-between h-5 w-6 focus:outline-none z-50" aria-label="Toggle Menu">
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-transform duration-300 origin-left" id="bar1"></span>
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-opacity duration-300" id="bar2"></span>
+                <span class="w-full h-[1.5px] bg-atlas-graphite dark:bg-atlas-bg transition-transform duration-300 origin-left" id="bar3"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu -->
+    <div id="mobile-drawer" class="fixed inset-0 bg-atlas-bg dark:bg-atlas-dark z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center px-10 space-y-6">
+        <a href="#projects" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Selected Works</a>
+        <a href="#manifesto" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">The Studio</a>
+        <a href="#sustainability" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Sustainability</a>
+        <a href="#services" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Core Services</a>
+        <a href="#founder" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Principal Profile</a>
+        <a href="#process" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Design Process</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Initiate Project</a>
+        
+        <div class="pt-8 border-t border-atlas-stone dark:border-white/10 flex flex-col space-y-2">
+            <span class="text-xs tracking-widest text-atlas-muted dark:text-atlas-stone/60 font-sans uppercase">CONTACT HQ</span>
+            <span class="text-sm font-medium text-atlas-graphite dark:text-atlas-bg">Adama, Oromia, Ethiopia</span>
+            <span class="text-sm font-medium text-atlas-graphite dark:text-atlas-bg">info@atlas7architects.com</span>
+        </div>
+    </div>
+
+    <!-- Section 01: Hero Canvas (Overhauled with immersive premium background image) -->
+    <header id="hero" class="relative w-full h-screen overflow-hidden flex items-center justify-start px-6 md:px-20 pt-20">
+        
+        <!-- Full-bleed background with Ken Burns motion scaling -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center ken-burns-bg transition-transform duration-300" 
+                 style="background-image: url('https://i.pinimg.com/1200x/f2/72/d1/f272d1444f5e8ad55bf43b58b984dff5.jpg');"></div>
+            <!-- Dynamic Dark Layer Overlay with custom opacity gradient matching daylight & night -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10 dark:from-black/90 dark:via-black/70 dark:to-black/30 pointer-events-none z-10"></div>
+        </div>
+
+        <div class="max-w-[1440px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
+            
+            <!-- Structural Typography and Strategic Information (Redesigned Floating Panel) -->
+            <div class="lg:col-start-6 lg:col-span-7 flex justify-end items-center">
+                <div class="backdrop-blur-xl bg-black/20 border border-white/10 p-10 md:p-16 rounded-3xl shadow-2xl relative group hover:border-white/20 transition-all duration-700">
+                    <!-- Subtle Interior Glow -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-atlas-gold/10 to-transparent rounded-3xl opacity-50"></div>
+                    
+                    <div class="relative z-10 text-right">
+                        <h1 class="font-serif text-6xl md:text-[8rem] font-light leading-none tracking-tight text-white mb-6">
+                            ATLAS 7
+                        </h1>
+                        <div class="flex items-center justify-end space-x-4">
+                            <span class="w-12 h-[1px] bg-atlas-gold"></span>
+                            <span class="text-sm md:text-base font-medium tracking-[0.4em] text-atlas-gold uppercase">ARCHITECTS</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Corner Brackets for technical precision feel -->
+                    <span class="absolute top-6 left-6 w-8 h-8 border-l border-t border-white/30"></span>
+                    <span class="absolute bottom-6 right-6 w-8 h-8 border-r border-b border-white/30"></span>
+                </div>
+            </div>
+
+            <!-- Right Column Grid Vector Overlay Panel (Subtle CAD/BIM blueprint elements) -->
+            <div class="hidden lg:col-span-5 h-[65vh] relative lg:flex items-center justify-center">
+                <div id="hero-parallax-layer" class="absolute inset-0 pointer-events-none z-10 opacity-30 transition-transform duration-300 ease-out">
+                    <svg class="w-full h-full text-atlas-gold" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="editorialGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.25" stroke-opacity="0.2"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#editorialGrid)" />
+                        <circle cx="50%" cy="50%" r="180" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.25" fill="none" />
+                        <line x1="10%" y1="10%" x2="90%" y2="90%" stroke="currentColor" stroke-width="0.25" stroke-opacity="0.2" />
+                        <line x1="90%" y1="10%" x2="10%" y2="90%" stroke="currentColor" stroke-width="0.25" stroke-opacity="0.2" />
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Section 02: Featured Projects (The Structural Hierarchy) -->
+    <section id="projects" class="py-24 md:py-32 px-6 md:px-20 max-w-[1440px] mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24">
+            <div class="max-w-xl">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">PORTFOLIO INDEX</span>
+                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">Selected Works</h2>
+            </div>
+            <!-- Dynamic Category Filter Links -->
+            <div class="flex flex-wrap gap-2 md:gap-4 mt-6 md:mt-0 border-b border-atlas-stone/40 dark:border-white/10 pb-2 md:pb-0">
+                <button onclick="filterPortfolio('all', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-atlas-bg text-atlas-graphite dark:text-atlas-bg transition-all duration-300">ALL WORK (15+)</button>
+                <button onclick="filterPortfolio('built', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">REALIZED BUILT (3)</button>
+                <button onclick="filterPortfolio('concept', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">CONCEPTS (8)</button>
+                <button onclick="filterPortfolio('interior', this)" class="px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300">INTERIORS (5)</button>
+            </div>
+        </div>
+
+        <!-- Asymmetric Editorial Grid Block -->
+        <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
+            
+            <!-- Project Card 01 (Flagship / 60% Width Representation) -->
+            <div class="portfolio-item built md:col-span-8 flex flex-col group cursor-pointer" onclick="openCaseStudy('horizon-residence')">
+                <div class="w-full aspect-[16:10] overflow-hidden rounded-2xl relative bg-atlas-dark shadow-md">
+                    <img src="https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg" 
+                         alt="The Horizon Residence" 
+                         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                        FLAGSHIP / REALIZED
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Horizon Residence</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Realized Residence &bull; 2025</p>
+                    </div>
+                    <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">01 / PROJECTS</span>
+                </div>
+            </div>
+
+            <!-- Project Card 02 (Secondary / Offset Column Representation) -->
+            <div class="portfolio-item concept md:col-span-4 flex flex-col group cursor-pointer md:mt-16" onclick="openCaseStudy('vertex-villa')">
+                <div class="w-full aspect-[4:5] overflow-hidden rounded-2xl relative bg-atlas-dark shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" 
+                         alt="The Vertex Villa" 
+                         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div class="absolute top-6 right-6 bg-atlas-gold text-white text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                        SPECULATIVE CONCEPT
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Vertex Villa</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Conceptual Model &bull; 2026</p>
+                    </div>
+                    <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">02 / PROJECTS</span>
+                </div>
+            </div>
+
+            <!-- Project Card 03 (Asymmetric Centered Composition) -->
+            <div class="portfolio-item built md:col-span-4 flex flex-col group cursor-pointer" onclick="openCaseStudy('nexus-atrium')">
+                <div class="w-full aspect-[4:5] overflow-hidden rounded-2xl relative bg-atlas-dark shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" 
+                         alt="The Nexus Atrium" 
+                         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                        REALIZED COMMERCIAL
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">The Nexus Atrium</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Oromia, Ethiopia &bull; Mixed-Use Built &bull; 2024</p>
+                    </div>
+                    <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">03 / PROJECTS</span>
+                </div>
+            </div>
+
+            <!-- Project Card 04 (Asymmetric Offset Spatially Balanced) -->
+            <div class="portfolio-item interior md:col-span-8 flex flex-col group cursor-pointer md:-mt-16" onclick="openCaseStudy('sky-courtyard')">
+                <div class="w-full aspect-[16:10] overflow-hidden rounded-2xl relative bg-atlas-dark shadow-md">
+                    <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80" 
+                         alt="Sky Courtyard Residence" 
+                         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                        INTERIOR RESIDENCE
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg group-hover:text-atlas-gold transition-colors duration-300">Sky Courtyard Residence</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 mt-1 font-sans">Adama, Ethiopia &bull; Concept Interior &bull; 2026</p>
+                    </div>
+                    <span class="text-sm text-atlas-gold font-mono tracking-widest uppercase mt-1">04 / PROJECTS</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Section 03: Interactive Before/After Transformation Slider -->
+    <section class="py-24 bg-atlas-dark text-white overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 md:px-20">
+            <div class="max-w-xl mb-12">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">TECHNICAL PRECISION</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight mb-4 text-white">From Blueprint to Reality</h2>
+                <p class="text-sm md:text-base text-atlas-stone/80 font-light">
+                    Slide the divider to visualize the transition between our raw engineering schematics (Precision) and the realized twilight masterpiece (Vision) for *The Horizon Residence*.
+                </p>
+            </div>
+
+            <!-- The Slider Framework Wrapper -->
+            <div class="relative w-full aspect-[16:9] rounded-2xl overflow-hidden select-none border border-atlas-stone/20 shadow-2xl" id="comparison-slider">
+                
+                <!-- Before Image Panel (Raw Architectural Line Schematic) -->
+                <div class="absolute inset-0 bg-atlas-dark flex items-center justify-center">
+                    <!-- Clean Architectural SVG line drawing representing the precise blueprint -->
+                    <div class="w-full h-full p-8 md:p-16 flex items-center justify-center opacity-70">
+                        <svg class="w-full h-full text-atlas-gold/45" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Foundation Grid Blueprints -->
+                            <line x1="50" y1="50" x2="750" y2="50" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 4" />
+                            <line x1="50" y1="400" x2="750" y2="400" stroke="currentColor" stroke-width="0.5" />
+                            <line x1="100" y1="50" x2="100" y2="400" stroke="currentColor" stroke-width="0.5" />
+                            <line x1="700" y1="50" x2="700" y2="400" stroke="currentColor" stroke-width="0.5" />
+                            
+                            <!-- Isometric concrete volume lines -->
+                            <rect x="150" y="150" width="300" height="200" stroke="currentColor" stroke-width="1.5" />
+                            <rect x="250" y="100" width="350" height="150" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="450" y1="150" x2="600" y2="100" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="450" y1="350" x2="600" y2="250" stroke="currentColor" stroke-width="1.5" />
+                            
+                            <!-- Blueprint architectural notations -->
+                            <text x="160" y="175" fill="currentColor" font-family="monospace" font-size="10">ELEVATION ANCHOR: G+2</text>
+                            <text x="260" y="125" fill="currentColor" font-family="monospace" font-size="10">CANTILEVER ROOF: SPAN 3.6m</text>
+                            <text x="50" y="240" fill="currentColor" font-family="monospace" font-size="8" transform="rotate(-90 50 240)">GRID LINE AXIS A-7</text>
+                            
+                            <!-- Dimensions lines -->
+                            <line x1="150" y1="370" x2="450" y2="370" stroke="currentColor" stroke-width="1" />
+                            <circle cx="150" cy="370" r="2" fill="currentColor" />
+                            <circle cx="450" cy="370" r="2" fill="currentColor" />
+                            <text x="280" y="385" fill="currentColor" font-family="monospace" font-size="10">12,000 mm</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- After Image Panel (Twilight Render Landscape) -->
+                <div class="absolute inset-0 bg-cover bg-center" id="after-panel"
+                     style="background-image: url('https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg'); width: 50%;">
+                </div>
+
+                <!-- The Split Slider Control Line Overlay -->
+                <div class="absolute top-0 bottom-0 w-[2px] bg-atlas-gold z-30 cursor-ew-resize" id="slider-line" style="left: 50%;">
+                    <!-- Gold Dial handle -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-atlas-gold rounded-full flex items-center justify-between px-2 shadow-lg border border-white/20">
+                        <svg class="w-3 h-3 text-atlas-dark" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+                        <svg class="w-3 h-3 text-atlas-dark" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </div>
+
+                <!-- Blind Input overlay wrapper for effortless touch & dragging -->
+                <input type="range" min="0" max="100" value="50" 
+                       class="absolute inset-0 w-full h-full opacity-0 z-30 cursor-ew-resize slider-handle-input" 
+                       id="slider-range-control">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 04: Studio Manifesto (The Pure Massing) -->
+    <section id="manifesto" class="py-24 md:py-32 bg-atlas-bg dark:bg-atlas-dark/95 flex items-center px-6 md:px-20">
+        <div class="max-w-5xl mx-auto w-full text-center">
+            <span class="text-xs font-semibold tracking-[0.25em] text-atlas-gold uppercase mb-6 block">MANIFESTO</span>
+            <p class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-atlas-graphite dark:text-atlas-bg leading-snug md:leading-[1.25] mb-12">
+                "Architecture is more than the creation of buildings. It is the shaping of experiences, identities, and enduring value."
+            </p>
+            <div class="w-20 h-[1px] bg-atlas-gold mx-auto mb-12"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left max-w-4xl mx-auto">
+                <p class="text-base md:text-lg text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed">
+                    Atlas-7 Architects was founded on the belief that architecture should go beyond meeting functional needs—it should enhance everyday life. We see every project as an opportunity to create meaningful environments that inspire, perform, and stand the test of time and outlast passing trends.
+                </p>
+                <p class="text-base md:text-lg text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed">
+                    As Ethiopia’s cities expand and lifestyles change, we seek to contribute to a new generation of architecture that is context-driven, sustainable, and forward-looking. We are committed to creating spaces that respect local identity in Oromia while embracing global standards of design excellence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 05: Services Grid (Core Capabilities) -->
+    <section id="services" class="py-24 md:py-32 bg-atlas-stone/25 dark:bg-white/5 px-6 md:px-20 border-t border-b border-atlas-stone/30 dark:border-white/10">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="max-w-xl mb-16 md:mb-24">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">EXPERTISE</span>
+                <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">Our Capabilities</h2>
+            </div>
+
+            <!-- Services Cards Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Service Card 01 -->
+                <div class="bg-atlas-bg dark:bg-atlas-dark p-8 rounded-2xl border border-atlas-stone/40 dark:border-white/10 hover:border-atlas-gold dark:hover:border-atlas-gold transition-all duration-300 group shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <div>
+                        <!-- Icon representation -->
+                        <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Architecture</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
+                            From context-driven conceptual frameworks to rigorous technical execution, we design contemporary structures that harmonize spatial efficiency with bold geometric expression.
+                        </p>
+                    </div>
+                    <div class="w-full h-[2px] bg-atlas-stone/40 dark:bg-white/10 group-hover:bg-atlas-gold transition-colors duration-300 mt-8"></div>
+                </div>
+
+                <!-- Service Card 02 -->
+                <div class="bg-atlas-bg dark:bg-atlas-dark p-8 rounded-2xl border border-atlas-stone/40 dark:border-white/10 hover:border-atlas-gold dark:hover:border-atlas-gold transition-all duration-300 group shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Interior Design</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
+                            Crafting tailored interior volumes where material textures, custom ergonomics, and natural lighting systems act as a seamless, high-performance extension of the core envelope.
+                        </p>
+                    </div>
+                    <div class="w-full h-[2px] bg-atlas-stone/40 dark:bg-white/10 group-hover:bg-atlas-gold transition-colors duration-300 mt-8"></div>
+                </div>
+
+                <!-- Service Card 03 -->
+                <div class="bg-atlas-bg dark:bg-atlas-dark p-8 rounded-2xl border border-atlas-stone/40 dark:border-white/10 hover:border-atlas-gold dark:hover:border-atlas-gold transition-all duration-300 group shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Architectural Visualization</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
+                            Translating unbuilt structural concepts into hyper-precise, photorealistic digital frames, enabling homeowners and developers to confidently experience spaces before breaking ground.
+                        </p>
+                    </div>
+                    <div class="w-full h-[2px] bg-atlas-stone/40 dark:bg-white/10 group-hover:bg-atlas-gold transition-colors duration-300 mt-8"></div>
+                </div>
+
+                <!-- Service Card 04 -->
+                <div class="bg-atlas-bg dark:bg-atlas-dark p-8 rounded-2xl border border-atlas-stone/40 dark:border-white/10 hover:border-atlas-gold dark:hover:border-atlas-gold transition-all duration-300 group shadow-sm flex flex-col justify-between min-h-[320px]">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-atlas-gold/10 flex items-center justify-center text-atlas-gold mb-8 group-hover:bg-atlas-gold group-hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium text-atlas-graphite dark:text-atlas-bg mb-4">Construction Supervision</h3>
+                        <p class="text-sm text-atlas-muted dark:text-atlas-stone/60 leading-relaxed">
+                            Ensuring design intent is absolute on the structural footprint. We provide meticulous field oversight, engineering detail validation, and qualitative hand-off protection.
+                        </p>
+                    </div>
+                    <div class="w-full h-[2px] bg-atlas-stone/40 dark:bg-white/10 group-hover:bg-atlas-gold transition-colors duration-300 mt-8"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 06: Experience Metrics Section -->
+    <section class="py-20 bg-atlas-dark text-white border-b border-atlas-stone/10 dark:border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-20 grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div class="text-center lg:border-r lg:border-atlas-stone/10 dark:lg:border-white/5">
+                <span class="font-serif text-5xl md:text-7xl font-light text-atlas-gold block mb-2">15+</span>
+                <span class="text-xs tracking-[0.2em] text-atlas-stone/70 uppercase">Total Portfolio Projects</span>
+            </div>
+            <div class="text-center lg:border-r lg:border-atlas-stone/10 dark:lg:border-white/5">
+                <span class="font-serif text-5xl md:text-7xl font-light text-atlas-gold block mb-2">3</span>
+                <span class="text-xs tracking-[0.2em] text-atlas-stone/70 uppercase">Realized Built Structures</span>
+            </div>
+            <div class="text-center lg:border-r lg:border-atlas-stone/10 dark:lg:border-white/5">
+                <span class="font-serif text-5xl md:text-7xl font-light text-atlas-gold block mb-2">8</span>
+                <span class="text-xs tracking-[0.2em] text-atlas-stone/70 uppercase">Speculative Concept Designs</span>
+            </div>
+            <div class="text-center">
+                <span class="font-serif text-5xl md:text-7xl font-light text-atlas-gold block mb-2">5</span>
+                <span class="text-xs tracking-[0.2em] text-atlas-stone/70 uppercase">Premium Interiors</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 07: Founder Spotlight (The Practice Core) -->
+    <section id="founder" class="py-24 md:py-32 bg-atlas-bg dark:bg-atlas-dark px-6 md:px-20 max-w-[1440px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side: Professional Monochromatic Portrait -->
+            <div class="lg:col-span-5 relative">
+                <div class="w-full aspect-[4:5] overflow-hidden rounded-2xl bg-atlas-dark shadow-xl relative group">
+                    <img src="https://i.pinimg.com/736x/a9/d2/ae/a9d2aeebf67deb08ebbdcf73210d3af9.jpg" 
+                         onerror="this.onerror=null; this.src='AA.jpeg';"
+                         alt="Architect Tewodros Genene" 
+                         class="w-full h-full object-cover filter grayscale contrast-115 transition-transform duration-700 ease-out group-hover:scale-103 animate-fade-in"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-atlas-dark/10 mix-blend-overlay"></div>
+                    <div class="absolute bottom-6 left-6 right-6 bg-atlas-dark/95 dark:bg-black/95 backdrop-blur-glass p-6 rounded-xl border border-white/10">
+                        <span class="text-[10px] font-mono tracking-widest text-atlas-gold uppercase block mb-1">FOUNDER & PRINCIPAL</span>
+                        <span class="font-serif text-xl text-white">Architect Tewodros Genene</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Narrative Core Strategy -->
+            <div class="lg:col-span-7 flex flex-col items-start justify-center">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2">FOUNDER STORY</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg mb-8">Architect Tewodros Genene</h2>
+                
+                <div class="space-y-6 text-base md:text-lg text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed max-w-2xl">
+                    <p>
+                        "Atlas-7 Architects was founded from a desire to create architecture that enriches everyday life and contributes positively to the future of our communities. Every project is approached as an opportunity to transform ideas into meaningful, lasting spaces through thoughtful design and technical excellence."
+                    </p>
+                    <p>
+                        By combining creative spatial exploration with technical rigor, every project is approached as an opportunity to generate lasting, uncompromised value. Tewodros views every commission as an opportunity to raise the architectural baseline of Ethiopia, designing spaces that are functional, robust, and memorable.
+                    </p>
+                </div>
+
+                <button onclick="togglePhilosophyModal()" class="mt-8 flex items-center space-x-2 text-sm font-semibold tracking-wider text-atlas-gold hover:text-atlas-graphite dark:hover:text-white transition-colors duration-300 uppercase">
+                    <span>Read Complete Design Philosophy</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- New Section: Sustainability Commitment -->
+    <section id="sustainability" class="py-24 md:py-32 bg-atlas-gold/5 dark:bg-black/20 border-t border-b border-atlas-gold/20 px-6 md:px-20">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-4 block">ENVIRONMENTAL VISION</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg mb-6">Built for the Next Generation</h2>
+                <p class="text-base text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed">
+                    At Atlas-7, we recognize that our footprint defines the legacy of Oromia's landscape. Our architectural approach integrates passive solar strategies, locally sourced materials, and water-reclamation systems to ensure that every structure functions as a high-performance ecosystem, not just a static shelter.
+                </p>
+            </div>
+            <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&w=800&q=80" alt="Sustainable Architecture" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-atlas-gold/20 mix-blend-multiply"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 08: Interactive Design Process (The Blueprint Loop) -->
+    <section id="process" class="py-24 md:py-32 bg-atlas-stone/20 dark:bg-white/5 px-6 md:px-20 border-t border-b border-atlas-stone/30 dark:border-white/10">
+        <div class="max-w-5xl mx-auto">
+            <div class="max-w-xl mb-16 text-center mx-auto">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">WORKFLOW</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg">The Blueprint Loop</h2>
+            </div>
+
+            <!-- Vertical Timeline Accordions -->
+            <div class="space-y-4">
+                
+                <!-- Timeline Step 01 -->
+                <div class="border border-atlas-stone dark:border-white/10 bg-atlas-bg dark:bg-atlas-dark rounded-2xl overflow-hidden transition-all duration-300 group shadow-sm">
+                    <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(1)">
+                        <div class="flex items-center space-x-6">
+                            <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">01</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Discovery & Brief Alignment</span>
+                        </div>
+                        <span id="process-icon-1" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </button>
+                    <div id="process-content-1" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 md:px-8 pb-8 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 leading-relaxed max-w-3xl border-t border-atlas-stone/20 dark:border-white/10 pt-4">
+                            We align extensively on your core spatial goals, budgetary parameters, and site contextual limitations in Adama or surrounding communities. Our discovery phase guarantees we lay down the optimal strategic vision before drawing a single technical layout.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Step 02 -->
+                <div class="border border-atlas-stone dark:border-white/10 bg-atlas-bg dark:bg-atlas-dark rounded-2xl overflow-hidden transition-all duration-300 group shadow-sm">
+                    <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(2)">
+                        <div class="flex items-center space-x-6">
+                            <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">02</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Concept Design & Volumetric Strategy</span>
+                        </div>
+                        <span id="process-icon-2" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </button>
+                    <div id="process-content-2" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 md:px-8 pb-8 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 leading-relaxed max-w-3xl border-t border-atlas-stone/20 dark:border-white/10 pt-4">
+                            We translate abstract programmatic requirements into physical volumetric massing sketches. This phase establishes the core geometric logic, interlocking cantilevers, solar paths, and floor alignments that dictate the future building.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Step 03 -->
+                <div class="border border-atlas-stone dark:border-white/10 bg-atlas-bg dark:bg-atlas-dark rounded-2xl overflow-hidden transition-all duration-300 group shadow-sm">
+                    <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(3)">
+                        <div class="flex items-center space-x-6">
+                            <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">03</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Design Development & Render Exploration</span>
+                        </div>
+                        <span id="process-icon-3" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </button>
+                    <div id="process-content-3" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 md:px-8 pb-8 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 leading-relaxed max-w-3xl border-t border-atlas-stone/20 dark:border-white/10 pt-4">
+                            We refine our initial concepts into high-fidelity models. We meticulously study materials (raw concrete, local masonry, glass), interior spatial voids, and custom lighting parameters. You see photo-realistic visual renders of your building's form.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Step 04 -->
+                <div class="border border-atlas-stone dark:border-white/10 bg-atlas-bg dark:bg-atlas-dark rounded-2xl overflow-hidden transition-all duration-300 group shadow-sm">
+                    <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(4)">
+                        <div class="flex items-center space-x-6">
+                            <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">04</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Technical Blueprint Documentation</span>
+                        </div>
+                        <span id="process-icon-4" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </button>
+                    <div id="process-content-4" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 md:px-8 pb-8 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 leading-relaxed max-w-3xl border-t border-atlas-stone/20 dark:border-white/10 pt-4">
+                            Our design transforms into engineering codes. We produce hyper-detailed mechanical, plumbing, electrical, and structural sets, material spec sheets, and foundation layout maps. Contractors get absolute blueprint clarity.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Step 05 -->
+                <div class="border border-atlas-stone dark:border-white/10 bg-atlas-bg dark:bg-atlas-dark rounded-2xl overflow-hidden transition-all duration-300 group shadow-sm">
+                    <button class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none" onclick="toggleProcessStep(5)">
+                        <div class="flex items-center space-x-6">
+                            <span class="font-serif text-2xl md:text-3xl text-atlas-gold/40 group-hover:text-atlas-gold transition-colors duration-300">05</span>
+                            <span class="font-serif text-lg md:text-2xl font-medium text-atlas-graphite dark:text-atlas-bg">Rigorous Construction Supervision</span>
+                        </div>
+                        <span id="process-icon-5" class="transform transition-transform duration-300 text-atlas-graphite dark:text-atlas-bg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </button>
+                    <div id="process-content-5" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 md:px-8 pb-8 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 leading-relaxed max-w-3xl border-t border-atlas-stone/20 dark:border-white/10 pt-4">
+                            Tewodros personally oversees critical phases at the construction site. We supervise material casting, alignment tolerances, structural execution, and interior finishes to guarantee the physical reality is as perfect as the initial vision.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 09: Contact Vault (Let's Create Something Exceptional) -->
+    <section id="contact" class="py-24 md:py-32 bg-atlas-dark text-white relative overflow-hidden">
+        
+        <!-- Structural Abstract Grid lines behind -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20%" y1="0" x2="20%" y2="100%" stroke="white" stroke-width="1"/>
+                <line x1="80%" y1="0" x2="80%" y2="100%" stroke="white" stroke-width="1"/>
+                <line x1="0" y1="30%" x2="100%" y2="30%" stroke="white" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-6 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+            
+            <!-- Left Panel: Coordinates & Intent -->
+            <div class="lg:col-span-5 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">PARTNER WITH US</span>
+                    <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight mb-8">Let's Create Something Exceptional.</h2>
+                    <p class="text-sm md:text-base text-atlas-stone/80 font-light leading-relaxed max-w-md">
+                        Whether you are planning a high-end private residence, a commercial development, or an institutional project, Atlas-7 Architects possesses the technical rigor and spatial intelligence to materialize your vision.
+                    </p>
+                </div>
+
+                <div class="mt-12 space-y-8">
+                    <!-- Headquarter Coordinate Row -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-atlas-gold shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono tracking-widest text-atlas-gold uppercase block">HEADQUARTERS</span>
+                            <span class="text-sm font-medium text-white block mt-1">Adama-Oromia, Ethiopia</span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Line Row -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-atlas-gold shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono tracking-widest text-atlas-gold uppercase block">DIRECT LINES</span>
+                            <span class="text-sm font-medium text-white block mt-1">+251 982 750 879</span>
+                            <span class="text-sm font-medium text-white block mt-0.5">+251 704 180 363</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: The Interactive Project Onboarding Vault -->
+            <div class="lg:col-span-7 bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-glass">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-6 block" id="form-step-indicator">STEP 1 OF 3: PROJECT IDENTITY</span>
+                
+                <form id="onboarding-form" onsubmit="handleOnboardingSubmit(event)">
+                    
+                    <!-- Form Phase 1: Identity & Scope -->
+                    <div id="form-phase-1" class="space-y-6">
+                        <div class="flex flex-col">
+                            <label class="text-xs font-medium tracking-wider uppercase text-atlas-stone/80 mb-2">Your Name / Organization *</label>
+                            <input type="text" id="client-name" required class="bg-white/5 border-b border-atlas-stone/30 focus:border-atlas-gold outline-none py-3 text-base text-white transition-all duration-300">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-xs font-medium tracking-wider uppercase text-atlas-stone/80 mb-2">Inquiry Type *</label>
+                            <select id="project-type" class="bg-atlas-dark border-b border-atlas-stone/30 focus:border-atlas-gold outline-none py-3 text-base text-white transition-all duration-300">
+                                <option value="Luxury Residence">Luxury Private Residence</option>
+                                <option value="Commercial Complex">Commercial / Real Estate Development</option>
+                                <option value="Mixed Use">Mixed-Use Urban Atrium</option>
+                                <option value="Visualization Suite">Architectural Visualization Commission</option>
+                                <option value="Consultation">General Structural Consultation</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="goToStep(2)" class="w-full py-4 bg-white hover:bg-atlas-gold hover:text-white text-atlas-dark font-semibold text-xs tracking-widest rounded-xl transition-all duration-300 uppercase mt-8">CONTINUE →</button>
+                    </div>
+
+                    <!-- Form Phase 2: Coordinates & Parameters -->
+                    <div id="form-phase-2" class="hidden space-y-6">
+                        <div class="flex flex-col">
+                            <label class="text-xs font-medium tracking-wider uppercase text-atlas-stone/80 mb-2">Project Location / City *</label>
+                            <input type="text" id="project-location" placeholder="e.g. Adama, Oromia" class="bg-white/5 border-b border-atlas-stone/30 focus:border-atlas-gold outline-none py-3 text-base text-white placeholder-white/30 transition-all duration-300">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-xs font-medium tracking-wider uppercase text-atlas-stone/80 mb-2">Estimated Build Area (Sq Meters)</label>
+                            <input type="number" id="project-area" placeholder="e.g. 450" class="bg-white/5 border-b border-atlas-stone/30 focus:border-atlas-gold outline-none py-3 text-base text-white placeholder-white/30 transition-all duration-300">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="goToStep(1)" class="py-4 border border-white/20 hover:border-white text-white font-semibold text-xs tracking-widest rounded-xl transition-all duration-300 uppercase">← BACK</button>
+                            <button type="button" onclick="goToStep(3)" class="py-4 bg-white hover:bg-atlas-gold hover:text-white text-atlas-dark font-semibold text-xs tracking-widest rounded-xl transition-all duration-300 uppercase">CONTINUE →</button>
+                        </div>
+                    </div>
+
+                    <!-- Form Phase 3: Spatial Intentions -->
+                    <div id="form-phase-3" class="hidden space-y-6">
+                        <div class="flex flex-col">
+                            <label class="text-xs font-medium tracking-wider uppercase text-atlas-stone/80 mb-2">Tell Us About Your Vision *</label>
+                            <textarea id="project-vision" rows="4" required placeholder="Describe the spatial experience or functional performance you require..." class="bg-white/5 border-b border-atlas-stone/30 focus:border-atlas-gold outline-none py-3 text-base text-white placeholder-white/30 transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="goToStep(2)" class="py-4 border border-white/20 hover:border-white text-white font-semibold text-xs tracking-widest rounded-xl transition-all duration-300 uppercase">← BACK</button>
+                            <button type="submit" class="py-4 bg-atlas-gold hover:bg-atlas-gold/90 text-white font-semibold text-xs tracking-widest rounded-xl transition-all duration-300 uppercase">SUBMIT BRIEF</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <!-- Onboarding Success Mock Blueprint Screen -->
+                <div id="onboarding-success" class="hidden flex flex-col items-center justify-center py-10 text-center">
+                    <div class="w-16 h-16 rounded-full border border-atlas-gold flex items-center justify-center text-atlas-gold mb-6 animate-pulse">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-light text-white mb-2">Structural Brief Registered</h3>
+                    <p class="text-xs text-atlas-stone/70 max-w-sm leading-relaxed mb-6">
+                        Thank you. Architect Tewodros Genene and our project team have securely logged your spatial parameters.
+                    </p>
+                    <div class="bg-white/5 border border-atlas-stone/20 rounded-xl p-4 w-full text-left font-mono text-[11px] text-atlas-stone/90">
+                        <span class="text-atlas-gold block uppercase mb-1">BRIEF METRICS PREVIEW</span>
+                        <div id="success-preview-metrics"></div>
+                    </div>
+                    <button onclick="resetOnboardingForm()" class="mt-8 text-xs font-semibold tracking-wider text-atlas-gold hover:text-white transition-colors duration-300 uppercase">
+                        SUBMIT ANOTHER CONSULTATION
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section 10: Footer (The Ground Line) -->
+    <footer class="bg-atlas-dark text-white pt-16 pb-8 border-t border-atlas-stone/10 dark:border-white/5 px-6 md:px-20">
+        <div class="max-w-[1440px] mx-auto flex flex-col justify-between h-full">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16">
+                <!-- Brand block -->
+                <div class="md:col-span-4 flex flex-col items-start">
+                    <span class="font-arial text-2xl font-bold tracking-widest text-white leading-none">
+                        ATLAS 7
+                    </span>
+                    <span class="text-[9px] tracking-[0.45em] text-atlas-gold font-bold uppercase mt-2">ARCHITECTS</span>
+                    <span class="text-sm font-light text-atlas-stone/60 mt-6 max-w-xs">
+                        A contemporary architectural practice that transforms visionary ideas into refined, buildable realities through precision, innovation, and timeless design.
+                    </span>
+                </div>
+
+                <!-- Navigation Links Grid -->
+                <div class="md:col-span-4 grid grid-cols-2 gap-8">
+                    <div class="flex flex-col space-y-3">
+                        <span class="text-[11px] font-mono tracking-widest text-atlas-gold uppercase mb-2">EXPLORE</span>
+                        <a href="#projects" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Portfolio</a>
+                        <a href="#manifesto" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">The Studio</a>
+                        <a href="#services" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Capabilities</a>
+                        <a href="#process" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Our Process</a>
+                    </div>
+                    <div class="flex flex-col space-y-3">
+                        <span class="text-[11px] font-mono tracking-widest text-atlas-gold uppercase mb-2">QUICK ACCESS</span>
+                        <a href="#founder" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Principal Portrait</a>
+                        <a href="#contact" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Initiate Project</a>
+                        <a href="https://t.me/atlas7_architects" target="_blank" class="text-sm text-atlas-gold hover:text-white transition-colors flex items-center space-x-1.5">
+                            <span>Telegram Channel</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Adama Coordinates -->
+                <div class="md:col-span-4 flex flex-col items-start md:items-end">
+                    <span class="text-[11px] font-mono tracking-widest text-atlas-gold uppercase mb-4">DIRECT COORDINATES</span>
+                    <span class="text-sm font-medium text-white block">Adama, Oromia, Ethiopia</span>
+                    <span class="text-sm text-atlas-stone/70 mt-1 block">info@atlas7architects.com</span>
+                    <span class="text-sm text-atlas-stone/70 mt-1 block">+251 982 750 879</span>
+                </div>
+            </div>
+
+            <!-- Bottom legal row -->
+            <div class="pt-8 border-t border-atlas-stone/10 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-atlas-stone/40">
+                <span>&copy; 2026 Atlas-7 Architects. All rights reserved.</span>
+                <span class="mt-4 md:style-mt-0 tracking-[0.2em] uppercase text-atlas-gold/70">Precision. Vision. Architecture.</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Case Study Dynamic Sliding Drawer Template -->
+    <div id="case-study-drawer" class="fixed inset-y-0 right-0 w-full md:max-w-4xl bg-atlas-bg dark:bg-atlas-dark z-50 transform translate-x-full transition-transform duration-500 ease-out shadow-2xl overflow-y-auto hidden">
+        
+        <!-- Sticky header close controls -->
+        <div class="sticky top-0 bg-atlas-bg/90 dark:bg-atlas-dark/90 backdrop-blur-glass z-10 px-6 md:px-10 py-6 border-b border-atlas-stone/40 dark:border-white/10 flex items-center justify-between">
+            <button onclick="closeCaseStudy()" class="flex items-center space-x-2 text-sm font-semibold tracking-wider text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold transition-colors duration-300 uppercase">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <span>Back to Portfolio</span>
+            </button>
+            <span class="text-xs font-mono tracking-widest text-atlas-gold uppercase" id="drawer-header-project-code">CASE STUDY</span>
+        </div>
+
+        <!-- Case Study Dynamic Content wrapper -->
+        <div class="px-6 md:px-10 py-12 space-y-16">
+            
+            <!-- SECTION 01: Hero Header and Cinematic Frame -->
+            <div class="space-y-6">
+                <div>
+                    <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-atlas-graphite dark:text-atlas-bg" id="drawer-project-title">Project Title Placeholder</h2>
+                    <p class="text-sm md:text-base text-atlas-muted dark:text-atlas-stone/60 mt-2 font-sans" id="drawer-project-meta">Location &bull; Year &bull; Status</p>
+                </div>
+                <div class="w-full aspect-[16:10] rounded-2xl overflow-hidden bg-atlas-dark relative shadow-lg">
+                    <img id="drawer-project-image" src="" alt="" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- SECTION 02: Overview with 2-Column Specs Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 border-t border-b border-atlas-stone/40 dark:border-white/10 py-10">
+                <div class="md:col-span-8 space-y-4">
+                    <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase">THE BRIEF & SPATIAL INTENT</h3>
+                    <p class="text-base md:text-lg text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed" id="drawer-project-desc-1">
+                        First narrative paragraph.
+                    </p>
+                    <p class="text-sm md:text-base text-atlas-muted dark:text-atlas-stone/70 font-light leading-relaxed" id="drawer-project-desc-2">
+                        Second narrative paragraph details.
+                    </p>
+                </div>
+                <div class="md:col-span-4 bg-atlas-stone/20 dark:bg-white/5 p-6 rounded-xl border border-atlas-stone/40 dark:border-white/10">
+                    <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-graphite dark:text-atlas-bg uppercase mb-6">Specification Deck</h3>
+                    <div class="space-y-4 text-xs font-sans">
+                        <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
+                            <span class="text-atlas-muted dark:text-atlas-stone/60">TYPOLOGY</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-typology">Commercial</span>
+                        </div>
+                        <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
+                            <span class="text-atlas-muted dark:text-atlas-stone/60">CONFIGURATION</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-config">Semi-Basement + G+2</span>
+                        </div>
+                        <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
+                            <span class="text-atlas-muted dark:text-atlas-stone/60">LOCATION</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-location">Adama, Ethiopia</span>
+                        </div>
+                        <div class="flex justify-between border-b border-atlas-stone/30 dark:border-white/5 pb-2">
+                            <span class="text-atlas-muted dark:text-atlas-stone/60">BUILT AREA</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-area">450 m²</span>
+                        </div>
+                        <div class="flex justify-between pb-2">
+                            <span class="text-atlas-muted dark:text-atlas-stone/60">SCOPE</span>
+                            <span class="font-semibold text-atlas-graphite dark:text-atlas-bg text-right" id="spec-scope">Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 03: Precision Line Drawings / Technical Transparency -->
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2">TECHNICAL TRANSPARENCY</h3>
+                    <h4 class="font-serif text-2xl md:text-3xl font-light text-atlas-graphite dark:text-atlas-bg">Isometric Section Drawing</h4>
+                </div>
+                <div class="w-full aspect-[16:9] bg-atlas-dark/95 border border-atlas-stone dark:border-white/10 rounded-2xl p-8 flex items-center justify-center">
+                    <!-- Clean SVG blueprint layout of floor levels for technical authority -->
+                    <svg class="w-full h-full text-atlas-gold/40" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="50" y1="100" x2="750" y2="100" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2" />
+                        <line x1="50" y1="220" x2="750" y2="220" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2" />
+                        <line x1="50" y1="340" x2="750" y2="340" stroke="currentColor" stroke-width="0.5" />
+                        
+                        <!-- Drawing labels -->
+                        <text x="60" y="90" fill="currentColor" font-family="monospace" font-size="10">LEVEL 02 - PRIVATE VILLAS</text>
+                        <text x="60" y="210" fill="currentColor" font-family="monospace" font-size="10">LEVEL 01 - LIVING SPACES</text>
+                        <text x="60" y="330" fill="currentColor" font-family="monospace" font-size="10">GROUND LEVEL - ATRIUM ACCESS</text>
+                        
+                        <!-- Vertical elevations axes -->
+                        <line x1="120" y1="50" x2="120" y2="380" stroke="currentColor" stroke-width="1" />
+                        <line x1="680" y1="50" x2="680" y2="380" stroke="currentColor" stroke-width="1" />
+                        
+                        <!-- Concrete core representations -->
+                        <rect x="250" y="100" width="80" height="240" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" />
+                        <rect x="470" y="100" width="80" height="240" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" />
+                        
+                        <text x="260" y="225" fill="currentColor" font-family="monospace" font-size="8" transform="rotate(-90 260 225)">CORE COLUMN A</text>
+                        <text x="480" y="225" fill="currentColor" font-family="monospace" font-size="8" transform="rotate(-90 480 225)">CORE COLUMN B</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- SECTION 04: Curated Photo Gallery Sequence -->
+            <div class="space-y-6">
+                <h3 class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase">CURATED PERSPECTIVES</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="rounded-xl overflow-hidden aspect-square shadow">
+                        <img id="drawer-gallery-1" src="" alt="Perspectives Grid" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-xl overflow-hidden aspect-square shadow">
+                        <img id="drawer-gallery-2" src="" alt="Perspectives Detail" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 05: Related Projects Loop -->
+            <div class="border-t border-atlas-stone/40 dark:border-white/10 pt-12 text-center">
+                <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase block mb-4">WANT TO CONSULT ON SPACES?</span>
+                <a href="#contact" onclick="closeCaseStudy()" class="px-8 py-4 bg-atlas-dark text-white hover:bg-atlas-gold transition-colors duration-300 font-semibold text-xs tracking-widest rounded-xl inline-block uppercase">
+                    Initialize Consultation For Your Footprint
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Complete Philosophy Drawer Modal -->
+    <div id="philosophy-modal" class="fixed inset-0 bg-atlas-dark/60 z-50 backdrop-blur-glass flex items-center justify-center p-6 hidden">
+        <div class="bg-atlas-bg dark:bg-atlas-dark rounded-2xl max-w-2xl w-full p-8 md:p-12 relative border border-atlas-stone dark:border-white/10 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="togglePhilosophyModal()" class="absolute top-6 right-6 text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">STUDIO PHILOSOPHY</span>
+            <h3 class="font-serif text-3xl font-light text-atlas-graphite dark:text-atlas-bg mb-6">Tewodros Genene Letter</h3>
+            
+            <div class="space-y-6 text-sm md:text-base text-atlas-muted dark:text-atlas-stone/70 leading-relaxed font-light">
+                <p>
+                    "Great design demands an unyielding balance between bold visionary concepts and rigorous technical precision. Every project under Atlas-7 is personally guided to ensure it stands as a testament to craftsmanship."
+                </p>
+                <p>
+                    Operating as a principal-led studio from Adama, Oromia, our practice is built on direct accountability. We do not mass-produce designs. We intentionally select a limited cohort of residential, commercial, and institutional projects to ensure every blueprint receives rigorous, detail-obsessed mastery from initial sketch to final on-site supervision.
+                </p>
+                <p>
+                    Ethiopia is ready for a new wave of architecture that is context-rooted, sustainable, and forward-looking. As cities expand and lifestyles change, we need buildings that blend cultural heritage, environmental care, and modern design excellence.
+                </p>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-atlas-stone/40 dark:border-white/10 flex items-center justify-between">
+                <div>
+                    <span class="font-serif text-lg font-bold text-atlas-graphite dark:text-atlas-bg block">Architect Tewodros Genene</span>
+                    <span class="text-xs text-atlas-muted dark:text-atlas-stone/60">Principal, Atlas-7 Architects</span>
+                </div>
+                <div class="text-[22px] font-serif italic text-atlas-gold">Tewodros G.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Core Client-Side JavaScript Logic -->
+    <script>
+        // Custom interactive case-studies dynamic database
+        const projectCollection = {
+            'horizon-residence': {
+                title: "The Horizon Residence",
+                code: "CASE STUDY 01 / HORIZON RESIDENCE",
+                meta: "Adama, Ethiopia &bull; Realized Residence &bull; 2025",
+                heroImage: "https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg",
+                gallery1: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+                gallery2: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+                desc1: "How do you introduce intimate luxury into a high-density urban context while maximizing natural light across a multi-level footprint? For this premier residential commission in Adama, the objective was to move away from traditional, heavy boundary walls.",
+                desc2: "Architect Tewodros Genene resolved the brief through a series of interlocking geometric concrete volumes and bold structural cantilevers. By introducing a functional semi-basement, the public and private zones of the residence were naturally elevated, granting the main living spaces panoramic views.",
+                specTypology: "Premium Residence",
+                specConfig: "Semi-Basement + G+2",
+                specLocation: "Adama, Oromia",
+                specArea: "480 m²",
+                specScope: "Architecture & Supervision"
+            },
+            'vertex-villa': {
+                title: "The Vertex Villa",
+                code: "CASE STUDY 02 / VERTEX VILLA",
+                meta: "Adama, Ethiopia &bull; Conceptual Model &bull; 2026",
+                heroImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+                gallery1: "https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg",
+                gallery2: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
+                desc1: "Situated on a highly visible hillside terrain in Adama, the design for The Vertex Villa explores a play of raw concrete textures, dramatic overhangs, and large glass exposures designed to naturally harvest daylight while maintaining privacy.",
+                desc2: "This speculative home relies heavily on custom thermodynamic ventilation paths to completely reduce mechanical cooling dependency. Deep cantilever roof sections minimize harsh mid-day solar gains, keeping the inside highly tempered year-round.",
+                specTypology: "Speculative Villa",
+                specConfig: "Basement + G+2",
+                specLocation: "Adama, Ethiopia",
+                specArea: "520 m²",
+                specScope: "Architecture & Visuals"
+            },
+            'nexus-atrium': {
+                title: "The Nexus Atrium",
+                code: "CASE STUDY 03 / NEXUS ATRIUM",
+                meta: "Oromia, Ethiopia &bull; Mixed-Use Built &bull; 2024",
+                heroImage: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+                gallery1: "https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg",
+                gallery2: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+                desc1: "The Nexus Atrium was designed as an iconic commercial destination addressing Oromia's rapid economic and physical development. Key objectives centered on structural robustness, structural modular flexibility, and dynamic street engagement.",
+                desc2: "The design features a massive internal light void designed as a public courtyard. Retail nodes occupy lower ground levels with private professional consultancies scaling vertically around the spatial canyon, ensuring robust ventilation and light.",
+                specTypology: "Mixed-Use Complex",
+                specConfig: "Ground + 2 Floors",
+                specLocation: "Oromia, Ethiopia",
+                specArea: "1250 m²",
+                specScope: "Architecture & Supervision"
+            },
+            'sky-courtyard': {
+                title: "Sky Courtyard Residence",
+                code: "CASE STUDY 04 / SKY COURTYARD",
+                meta: "Adama, Ethiopia &bull; Concept Interior &bull; 2026",
+                heroImage: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80",
+                gallery1: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+                gallery2: "https://i.pinimg.com/736x/12/73/83/127383ccdb25c3d342b3f0a64a21ddff.jpg",
+                desc1: "Designed as an oasis for urban family living, Sky Courtyard turns the house inside-out, placing a highly landscaped light well as the absolute focal anchor. Public lounge spaces surround the atrium space seamlessly.",
+                desc2: "Natural, tactile materials (concrete terrazzo, local warm timber accents, raw plaster walls) evoke a sense of grounding and tranquility, creating a clean geometric landscape that will stand the test of time.",
+                specTypology: "Interior Architecture",
+                specConfig: "Residential Interiors",
+                specLocation: "Adama, Ethiopia",
+                specArea: "450 m²",
+                specScope: "Interior & Visuals"
+            }
+        };
+
+        // Theme Mode Toggle Controller
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('atlas-theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('atlas-theme', 'dark');
+            }
+            // Trigger dynamic recalculation of scrolled navbar state
+            syncNavbarStyles();
+        }
+
+        // Navigation state transformation on scroll (Delicate transition optimization)
+        function syncNavbarStyles() {
+            const navbar = document.getElementById("navbar");
+            const isDark = document.documentElement.classList.contains('dark');
+            if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+                navbar.className = "fixed top-0 left-0 w-full h-20 z-50 flex items-center justify-between px-6 md:px-16 border-b bg-atlas-bg/95 dark:bg-atlas-dark/95 backdrop-blur-glass border-atlas-stone/30 dark:border-white/5 shadow-sm";
+            } else {
+                navbar.className = "fixed top-0 left-0 w-full h-24 z-50 flex items-center justify-between px-6 md:px-16 border-b border-transparent bg-transparent";
+            }
+        }
+        window.onscroll = syncNavbarStyles;
+
+        // Toggle mobile navigation menu drawer
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileDrawer = document.getElementById("mobile-drawer");
+        const bar1 = document.getElementById("bar1");
+        const bar2 = document.getElementById("bar2");
+        const bar3 = document.getElementById("bar3");
+
+        function toggleMobileMenu() {
+            mobileDrawer.classList.toggle("translate-x-full");
+            bar1.classList.toggle("rotate-45");
+            bar1.classList.toggle("translate-y-2");
+            bar2.classList.toggle("opacity-0");
+            bar3.classList.toggle("-rotate-45");
+            bar3.classList.toggle("-translate-y-2");
+        }
+        mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+
+        // Before/After interactive slider coordinate sync
+        const comparisonSlider = document.getElementById("slider-range-control");
+        const afterPanel = document.getElementById("after-panel");
+        const sliderLine = document.getElementById("slider-line");
+
+        if (comparisonSlider) {
+            comparisonSlider.addEventListener("input", function(e) {
+                const sliderValue = e.target.value;
+                afterPanel.style.width = sliderValue + "%";
+                sliderLine.style.left = sliderValue + "%";
+            });
+        }
+
+        // Portfolio visual interactive filter
+        function filterPortfolio(category, buttonEl) {
+            const items = document.querySelectorAll(".portfolio-item");
+            const filterBtns = buttonEl.parentNode.querySelectorAll("button");
+            
+            // Clean active border indicators matching dark mode variables
+            filterBtns.forEach(btn => {
+                btn.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-transparent text-atlas-muted dark:text-atlas-stone/60 hover:text-atlas-graphite dark:hover:text-atlas-bg transition-all duration-300";
+            });
+            buttonEl.className = "px-4 py-2 text-xs font-semibold tracking-wider uppercase border-b-2 border-atlas-graphite dark:border-atlas-bg text-atlas-graphite dark:text-atlas-bg transition-all duration-300";
+
+            // Filter animations
+            items.forEach(item => {
+                item.style.opacity = "0.1";
+                item.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    if (category === "all" || item.classList.contains(category)) {
+                        item.classList.remove("hidden");
+                        setTimeout(() => {
+                            item.style.opacity = "1";
+                            item.style.transform = "scale(1)";
+                        }, 50);
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                }, 300);
+            });
+        }
+
+        // Case study dynamic drawer slider controller
+        function openCaseStudy(projectKey) {
+            const project = projectCollection[projectKey];
+            if (!project) return;
+
+            document.getElementById("drawer-header-project-code").innerText = project.code;
+            document.getElementById("drawer-project-title").innerText = project.title;
+            document.getElementById("drawer-project-meta").innerHTML = project.meta;
+            document.getElementById("drawer-project-image").src = project.heroImage;
+            document.getElementById("drawer-project-desc-1").innerText = project.desc1;
+            document.getElementById("drawer-project-desc-2").innerText = project.desc2;
+            
+            document.getElementById("spec-typology").innerText = project.specTypology;
+            document.getElementById("spec-config").innerText = project.specConfig;
+            document.getElementById("spec-location").innerText = project.specLocation;
+            document.getElementById("spec-area").innerText = project.specArea;
+            document.getElementById("spec-scope").innerText = project.specScope;
+
+            document.getElementById("drawer-gallery-1").src = project.gallery1;
+            document.getElementById("drawer-gallery-2").src = project.gallery2;
+
+            const drawer = document.getElementById("case-study-drawer");
+            drawer.classList.remove("hidden");
+            document.body.style.overflow = "hidden"; // Prevent background body scroll
+            setTimeout(() => {
+                drawer.classList.remove("translate-x-full");
+            }, 50);
+        }
+
+        function closeCaseStudy() {
+            const drawer = document.getElementById("case-study-drawer");
+            drawer.classList.add("translate-x-full");
+            document.body.style.overflow = "auto";
+            setTimeout(() => {
+                drawer.classList.add("hidden");
+            }, 500);
+        }
+
+        // Process step linear accordion controller
+        function toggleProcessStep(stepNum) {
+            const content = document.getElementById(`process-content-${stepNum}`);
+            const icon = document.getElementById(`process-icon-${stepNum}`);
+            
+            // Close all other elements
+            for (let i = 1; i <= 5; i++) {
+                if (i !== stepNum) {
+                    const otherContent = document.getElementById(`process-content-${i}`);
+                    const otherIcon = document.getElementById(`process-icon-${i}`);
+                    if (otherContent) otherContent.style.maxHeight = null;
+                    if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+                }
+            }
+
+            // Toggle active element
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+
+        // Toggle Founder complete letter modal
+        function togglePhilosophyModal() {
+            const modal = document.getElementById("philosophy-modal");
+            modal.classList.toggle("hidden");
+        }
+
+        // Multi-phase onboarding form controllers
+        let currentStep = 1;
+
+        function goToStep(stepNum) {
+            document.getElementById(`form-phase-${currentStep}`).classList.add("hidden");
+            document.getElementById(`form-phase-${stepNum}`).classList.remove("hidden");
+            
+            currentStep = stepNum;
+            
+            const titles = {
+                1: "STEP 1 OF 3: PROJECT IDENTITY",
+                2: "STEP 2 OF 3: PARAMETERS & GEOGRAPHY",
+                3: "STEP 3 OF 3: SPATIAL INTENTIONS"
+            };
+            document.getElementById("form-step-indicator").innerText = titles[stepNum];
+        }
+
+        function handleOnboardingSubmit(e) {
+            e.preventDefault();
+            
+            // Harvest structural specifications
+            const clientName = document.getElementById("client-name").value;
+            const projectType = document.getElementById("project-type").value;
+            const projectLocation = document.getElementById("project-location").value;
+            const projectArea = document.getElementById("project-area").value;
+            const projectVision = document.getElementById("project-vision").value;
+
+            // Compile success blueprint mockup metrics
+            const metricsHtml = `
+                <div class="space-y-1.5 mt-2">
+                    <div><span class="text-atlas-gold/70">CLIENT ID:</span> ${clientName}</div>
+                    <div><span class="text-atlas-gold/70">TYPOLOGY:</span> ${projectType}</div>
+                    <div><span class="text-atlas-gold/70">COORDINATES:</span> ${projectLocation || 'Not Specified'}</div>
+                    <div><span class="text-atlas-gold/70">EST. SURFACE:</span> ${projectArea ? projectArea + ' m²' : 'Standard Area Matrix'}</div>
+                    <div class="mt-2 text-white border-t border-white/10 pt-2 line-clamp-2 italic">"${projectVision}"</div>
+                </div>
+            `;
+            
+            document.getElementById("success-preview-metrics").innerHTML = metricsHtml;
+
+            // Switch views
+            document.getElementById("onboarding-form").classList.add("hidden");
+            document.getElementById("onboarding-success").classList.remove("hidden");
+            document.getElementById("form-step-indicator").classList.add("hidden");
+        }
+
+        function resetOnboardingForm() {
+            document.getElementById("onboarding-form").reset();
+            document.getElementById("onboarding-form").classList.remove("hidden");
+            document.getElementById("onboarding-success").classList.add("hidden");
+            document.getElementById("form-step-indicator").classList.remove("hidden");
+            goToStep(1);
+        }
+
+        // Interactive Mouse Parallax handler for the drafting background
+        function initHeroParallax() {
+            const heroSection = document.getElementById('hero');
+            const parallaxLayer = document.getElementById('hero-parallax-layer');
+            if (heroSection && parallaxLayer) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    // Calculate relative translation offset (-15px to 15px)
+                    const shiftX = (x / rect.width - 0.5) * 30;
+                    const shiftY = (y / rect.height - 0.5) * 30;
+                    parallaxLayer.style.transform = `translate(${shiftX}px, ${shiftY}px)`;
+                });
+                heroSection.addEventListener('mouseleave', () => {
+                    parallaxLayer.style.transform = 'translate(0px, 0px)';
+                });
+            }
+        }
+
+        // Handle page initialization
+        window.onload = function() {
+            // Default open step 01 in blueprint loop on page load
+            toggleProcessStep(1);
+            // Fire mouse movement handler for blueprint graphics
+            initHeroParallax();
+        }
+    </script>
+</body>
+</html>
