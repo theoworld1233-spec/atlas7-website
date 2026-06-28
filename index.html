@@ -172,28 +172,32 @@
                 <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">01</span>
                 <span>Projects</span>
             </a>
-            <a href="#manifesto" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+            <a href="#renders" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
                 <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">02</span>
+                <span>3D Exhibition</span>
+            </a>
+            <a href="#manifesto" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">03</span>
                 <span>Studio</span>
             </a>
             <a href="#sustainability" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">03</span>
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">04</span>
                 <span>Sustainability</span>
             </a>
             <a href="#services" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">04</span>
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">05</span>
                 <span>Services</span>
             </a>
             <a href="#founder" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">05</span>
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">06</span>
                 <span>Founder</span>
             </a>
             <a href="#process" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">06</span>
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">07</span>
                 <span>Process</span>
             </a>
             <a href="#contact" class="group/item flex items-baseline space-x-1.5 text-[11px] font-medium tracking-[0.18em] text-atlas-graphite/70 dark:text-atlas-bg/70 hover:text-atlas-gold dark:hover:text-atlas-gold uppercase">
-                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">07</span>
+                <span class="text-[8px] font-mono text-atlas-gold/60 group-hover/item:text-atlas-gold">08</span>
                 <span>Contact</span>
             </a>
         </div>
@@ -234,6 +238,7 @@
     <!-- Mobile Drawer Overlay Menu -->
     <div id="mobile-drawer" class="fixed inset-0 bg-atlas-bg dark:bg-atlas-dark z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center px-10 space-y-6">
         <a href="#projects" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Selected Works</a>
+        <a href="#renders" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">3D Exhibition</a>
         <a href="#manifesto" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">The Studio</a>
         <a href="#sustainability" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Sustainability</a>
         <a href="#services" onclick="toggleMobileMenu()" class="font-serif text-3xl text-atlas-graphite dark:text-atlas-bg hover:text-atlas-gold tracking-wide">Core Services</a>
@@ -410,7 +415,7 @@
     </section>
 
     <!-- Section 03: Interactive Before/After Transformation Slider -->
-    <section class="py-24 bg-atlas-dark text-white overflow-hidden">
+    <section class="py-24 bg-atlas-dark text-white overflow-hidden border-b border-atlas-stone/10">
         <div class="max-w-6xl mx-auto px-6 md:px-20">
             <div class="max-w-xl mb-12">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">TECHNICAL PRECISION</span>
@@ -473,6 +478,126 @@
                        class="absolute inset-0 w-full h-full opacity-0 z-30 cursor-ew-resize slider-handle-input" 
                        id="slider-range-control">
             </div>
+        </div>
+    </section>
+
+    <!-- Section: Cinematic Exhibition (3D Video Renders) -->
+    <section id="renders" class="relative w-full min-h-screen bg-atlas-dark text-white flex flex-col justify-center overflow-hidden py-24 border-b border-atlas-stone/10">
+        <div class="absolute inset-0 blueprint-grid pointer-events-none opacity-20 z-0"></div>
+        
+        <div class="max-w-[1440px] mx-auto w-full px-6 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <!-- Left Side: Interactive Menu List -->
+            <div class="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 relative z-20">
+                <span class="text-xs font-semibold tracking-[0.25em] text-atlas-gold uppercase mb-4 block">3D CINEMATIC PORTFOLIO</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight mb-8 text-white">Exhibition of Form</h2>
+                
+                <div class="flex flex-col space-y-3" id="video-menu">
+                    <!-- Project item 1 -->
+                    <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-atlas-gold/40 transition-all duration-300 active"
+                            data-video="videos/render1.mp4" 
+                            data-poster="horisonreidence.jpg"
+                            data-title="The Horizon Residence"
+                            data-subtitle="Adama, Oromia &bull; 3D Atmospheric Walkthrough"
+                            data-desc="An immersive exterior spatial walkthrough of our flagship residence. Observe the cinematic daylighting, bold volumetric concrete cantilevers, and natural local textures in motion.">
+                        <span class="font-mono text-[10px] text-atlas-gold mr-4 mt-1">01</span>
+                        <div class="flex-1">
+                            <span class="block font-serif text-lg md:text-xl font-medium text-white group-hover:text-atlas-gold transition-colors duration-300">The Horizon Residence</span>
+                            <span class="block text-xs text-atlas-stone/60 font-sans mt-0.5">Flagship Realized Walkthrough</span>
+                        </div>
+                    </button>
+                    <!-- Project item 2 -->
+                    <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-atlas-gold/40 transition-all duration-300"
+                            data-video="videos/render2.mp4" 
+                            data-poster="ChatGPT Image May 31, 2026, 08_57_18 PM.png"
+                            data-title="Modern Luxury Complex"
+                            data-subtitle="Adama, Ethiopia &bull; Volumetric Design Study"
+                            data-desc="A high-performance luxury complex utilizing elegant natural stone tiling facades, dynamic steel trellis overhangs, and warm ambient uplighting systems designed for modern density.">
+                        <span class="font-mono text-[10px] text-atlas-gold mr-4 mt-1">02</span>
+                        <div class="flex-1">
+                            <span class="block font-serif text-lg md:text-xl font-medium text-white group-hover:text-atlas-gold transition-colors duration-300">Modern Luxury Complex</span>
+                            <span class="block text-xs text-atlas-stone/60 font-sans mt-0.5">Volumetric Facade Strategy</span>
+                        </div>
+                    </button>
+                    <!-- Project item 3 (Placeholder) -->
+                    <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all duration-300 opacity-40 cursor-not-allowed"
+                            data-video="videos/render3.mp4" 
+                            data-poster="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+                            data-title="Glass Pavilion VII"
+                            data-subtitle="Oromia, Ethiopia &bull; Structural Steel Framing [Locked]"
+                            data-desc="An upcoming uncompromised framing execution where massive floor-to-ceiling glass grids completely dissolve the boundary between wild nature and geometric interiors.">
+                        <span class="font-mono text-[10px] text-white/40 mr-4 mt-1">03</span>
+                        <div class="flex-1">
+                            <span class="block font-serif text-lg md:text-xl font-medium text-white/50">Speculative Render Slot III</span>
+                            <span class="block text-xs text-atlas-stone/40 font-sans mt-0.5">Pending Video Upload</span>
+                        </div>
+                    </button>
+                    <!-- Project item 4 (Placeholder) -->
+                    <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all duration-300 opacity-40 cursor-not-allowed"
+                            data-video="videos/render4.mp4" 
+                            data-poster="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80"
+                            data-title="The Cantilever House"
+                            data-subtitle="Adama, Ethiopia &bull; Structural Integrity Study [Locked]"
+                            data-desc="An upcoming structural study mapping tension load metrics for a suspended concrete balcony floor, capturing a fluid transition of spaces.">
+                        <span class="font-mono text-[10px] text-white/40 mr-4 mt-1">04</span>
+                        <div class="flex-1">
+                            <span class="block font-serif text-lg md:text-xl font-medium text-white/50">Speculative Render Slot IV</span>
+                            <span class="block text-xs text-atlas-stone/40 font-sans mt-0.5">Pending Video Upload</span>
+                        </div>
+                    </button>
+                    <!-- Project item 5 (Placeholder) -->
+                    <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all duration-300 opacity-40 cursor-not-allowed"
+                            data-video="videos/render5.mp4" 
+                            data-poster="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&w=1200&q=80"
+                            data-title="Slate Core Studio"
+                            data-subtitle="Oromia Regional Concept &bull; Creative Studio [Locked]"
+                            data-desc="An upcoming interior study in structural acoustics and minimalist architectural desk positioning. Natural limestone walls diffuse sound and light.">
+                        <span class="font-mono text-[10px] text-white/40 mr-4 mt-1">05</span>
+                        <div class="flex-1">
+                            <span class="block font-serif text-lg md:text-xl font-medium text-white/50">Speculative Render Slot V</span>
+                            <span class="block text-xs text-atlas-stone/40 font-sans mt-0.5">Pending Video Upload</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Majestic Cinematic Theatre Canvas Overlay -->
+            <div class="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2 z-10">
+                <div class="relative w-full aspect-[16:9] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/50 group/theatre">
+                    
+                    <!-- Seamless Dynamic Video Layer -->
+                    <video id="exhibition-video-player" 
+                           class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" 
+                           autoplay loop muted playsinline 
+                           poster="horisonreidence.jpg">
+                        <source id="exhibition-video-source" src="videos/render1.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- Cinematic Vignette Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none z-10"></div>
+                    
+                    <!-- Dynamic floating player overlay metrics -->
+                    <div class="absolute bottom-6 left-6 right-6 z-20 flex flex-col pointer-events-none">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 id="exhibition-render-title" class="font-serif text-2xl text-white tracking-wide">The Horizon Residence</h3>
+                                <p id="exhibition-render-subtitle" class="text-[10px] text-atlas-gold font-mono tracking-widest uppercase mt-1">Adama, Oromia &bull; 3D Atmospheric Walkthrough</p>
+                            </div>
+                            <span class="text-[9px] font-mono tracking-widest text-white/40 bg-white/5 border border-white/10 px-2 py-1 rounded">CAD FEED_ACTIVE</span>
+                        </div>
+                        <p id="exhibition-render-desc" class="text-xs text-atlas-stone/77 font-light leading-relaxed mt-3 max-w-xl transition-all duration-300">
+                            An immersive exterior spatial walkthrough of our flagship residence. Observe the daylight dynamics, bold volumetric concrete cantilevers, and natural local textures in motion.
+                        </p>
+                    </div>
+
+                    <!-- Ambient Glowing borders -->
+                    <span class="absolute top-4 left-4 w-4 h-4 border-l border-t border-white/30"></span>
+                    <span class="absolute top-4 right-4 w-4 h-4 border-r border-t border-white/30"></span>
+                    <span class="absolute bottom-4 left-4 w-4 h-4 border-l border-b border-white/30"></span>
+                    <span class="absolute bottom-4 right-4 w-4 h-4 border-r border-b border-white/30"></span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -633,7 +758,7 @@
         </div>
     </section>
 
-    <!-- New Section: Sustainability Commitment -->
+    <!-- Section: Sustainability Commitment -->
     <section id="sustainability" class="py-24 md:py-32 bg-atlas-gold/5 dark:bg-black/20 border-t border-b border-atlas-gold/20 px-6 md:px-20">
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -968,6 +1093,7 @@
                     <div class="flex flex-col space-y-3">
                         <span class="text-[11px] font-mono tracking-widest text-atlas-gold uppercase mb-2">EXPLORE</span>
                         <a href="#projects" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Portfolio</a>
+                        <a href="#renders" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">3D Exhibition</a>
                         <a href="#manifesto" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">The Studio</a>
                         <a href="#services" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Capabilities</a>
                         <a href="#process" class="text-sm text-atlas-stone/80 hover:text-white transition-colors">Our Process</a>
@@ -1286,6 +1412,58 @@
             });
         }
 
+        // Interactive 3D Video Exhibition Controller
+        function initVideoExhibition() {
+            const menuButtons = document.querySelectorAll(".video-menu-btn");
+            const player = document.getElementById("exhibition-video-player");
+            const source = document.getElementById("exhibition-video-source");
+            const uiTitle = document.getElementById("exhibition-render-title");
+            const uiSubtitle = document.getElementById("exhibition-render-subtitle");
+            const uiDesc = document.getElementById("exhibition-render-desc");
+
+            if (!player || menuButtons.length === 0) return;
+
+            menuButtons.forEach(btn => {
+                // Interactive trigger handler (Works optimally on hover and touches)
+                const triggerHandler = function() {
+                    if (btn.classList.contains("active")) return;
+
+                    // Harvest specifications from attributes
+                    const targetVideo = btn.getAttribute("data-video");
+                    const targetPoster = btn.getAttribute("data-poster");
+                    const targetTitle = btn.getAttribute("data-title");
+                    const targetSubtitle = btn.getAttribute("data-subtitle");
+                    const targetDesc = btn.getAttribute("data-desc");
+
+                    // Fade-out player screen, swap sources, then reload loop
+                    player.style.opacity = "0.15";
+                    
+                    setTimeout(() => {
+                        // Swap video attributes
+                        source.setAttribute("src", targetVideo);
+                        player.setAttribute("poster", targetPoster);
+                        player.load();
+                        player.play();
+
+                        // Fade player screen back in
+                        player.style.opacity = "1";
+
+                        // Update floating labels smoothly
+                        uiTitle.innerText = targetTitle;
+                        uiSubtitle.innerHTML = targetSubtitle;
+                        uiDesc.innerText = targetDesc;
+                    }, 350);
+
+                    // Update active button indicators
+                    menuButtons.forEach(b => b.classList.remove("active", "border-atlas-gold/40", "bg-white/[0.05]"));
+                    btn.classList.add("active", "border-atlas-gold/40", "bg-white/[0.05]");
+                };
+
+                btn.addEventListener("mouseenter", triggerHandler);
+                btn.addEventListener("click", triggerHandler);
+            });
+        }
+
         // Portfolio visual interactive filter
         function filterPortfolio(category, buttonEl) {
             const items = document.querySelectorAll(".portfolio-item");
@@ -1464,6 +1642,8 @@
             toggleProcessStep(1);
             // Fire mouse movement handler for blueprint graphics
             initHeroParallax();
+            // Initialize premium video render exhibition controllers
+            initVideoExhibition();
         }
     </script>
 </body>
