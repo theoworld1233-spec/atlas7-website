@@ -573,6 +573,18 @@
                         <source id="exhibition-video-source" src="videos/render1.mp4" type="video/mp4">
                     </video>
 
+                    <!-- CUSTOM GLASSMORPHIC PLAY/PAUSE OVERLAY BUTTON -->
+                    <button id="video-play-pause-btn" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 w-16 h-16 bg-black/40 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-atlas-gold hover:text-atlas-dark hover:scale-110 active:scale-95 transition-all duration-300 shadow-2xl focus:outline-none">
+                        <!-- Play Icon -->
+                        <svg id="play-icon-svg" class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <!-- Pause Icon -->
+                        <svg id="pause-icon-svg" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+
                     <!-- Cinematic Vignette Gradient Overlay -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none z-10"></div>
                     
@@ -1420,8 +1432,50 @@
             const uiTitle = document.getElementById("exhibition-render-title");
             const uiSubtitle = document.getElementById("exhibition-render-subtitle");
             const uiDesc = document.getElementById("exhibition-render-desc");
+            const playPauseBtn = document.getElementById("video-play-pause-btn");
+            const playIcon = document.getElementById("play-icon-svg");
+            const pauseIcon = document.getElementById("pause-icon-svg");
 
-            if (!player || menuButtons.length === 0) return;
+            if (!player) return;
+
+            // Synchronize the custom button design state based on real-time playback
+            const updatePlayBtnState = () => {
+                if (player.paused) {
+                    playIcon.classList.remove("hidden");
+                    pauseIcon.classList.add("hidden");
+                } else {
+                    playIcon.classList.add("hidden");
+                    pauseIcon.classList.remove("hidden");
+                }
+            };
+
+            // Custom Play/Pause Control Action Handler
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener("click", () => {
+                    player.muted = true; // Hard-lock muted status to secure play privileges
+                    if (player.paused) {
+                        player.play().then(updatePlayBtnState).catch(err => console.log("Manual play blocked", err));
+                    } else {
+                        player.pause();
+                        updatePlayBtnState();
+                    }
+                });
+            }
+
+            // Bind video status change triggers directly
+            player.addEventListener("play", updatePlayBtnState);
+            player.addEventListener("pause", updatePlayBtnState);
+
+            // Execute automated safe launch sequence
+            player.muted = true;
+            player.play()
+                .then(updatePlayBtnState)
+                .catch(err => {
+                    console.warn("Autoplay blocked by client web engine. Render paused until user click interaction.", err);
+                    updatePlayBtnState();
+                });
+
+            if (menuButtons.length === 0) return;
 
             menuButtons.forEach(btn => {
                 // Interactive trigger handler (Works optimally on hover and touches)
@@ -1440,10 +1494,18 @@
                     
                     setTimeout(() => {
                         // Swap video attributes
-                        source.setAttribute("src", targetVideo);
                         player.setAttribute("poster", targetPoster);
+                        source.setAttribute("src", targetVideo);
                         player.load();
-                        player.play();
+                        
+                        // Force state configuration rules
+                        player.muted = true;
+                        player.play()
+                            .then(updatePlayBtnState)
+                            .catch(err => {
+                                console.warn("Autoplay blocked for swapped video stream.", err);
+                                updatePlayBtnState();
+                            });
 
                         // Fade player screen back in
                         player.style.opacity = "1";
