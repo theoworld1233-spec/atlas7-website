@@ -41,7 +41,7 @@
     <style>
         /* CSS variables to adjust the luxury transition configurations globally */
         :root {
-            --transition-speed: 0.5s; /* Snappy yet smooth transition timing */
+            --transition-speed: 0.6s; /* Fluid luxury timing transition */
             --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1); /* Custom cubic-bezier easing */
         }
 
@@ -68,7 +68,7 @@
         }
         
         /* Dynamic transition system utilizing globally customizable easing variables */
-        body, nav, div, section, p, h1, h2, h3, h4, span, button, select, input, textarea, a, svg {
+        body, nav, div, section, p, h1, h2, h3, h4, span, button, select, input, textarea, a, svg, iframe {
             transition: background-color var(--transition-speed) var(--ease-luxury), 
                         border-color var(--transition-speed) var(--ease-luxury), 
                         color var(--transition-speed) var(--ease-luxury), 
@@ -127,6 +127,7 @@
         .group:hover .bracket-bl { transform: translate(2px, -2px); }
         .group:hover .bracket-br { transform: translate(-2px, -2px); }
     </style>
+    
     <script>
         // Synchronized system state retrieval
         (function() {
@@ -273,7 +274,7 @@
                     <div class="absolute inset-0 bg-gradient-to-tr from-atlas-gold/10 to-transparent rounded-3xl opacity-50"></div>
                     
                     <div class="relative z-10 text-right">
-                        <h1 class="font-serif text-6xl md:text-[8rem] font-light leading-none tracking-tight text-white mb-6">
+                        <h1 class="font-serif text-6xl md:text-[8rem] font-light leading-none tracking-tight text-white mb-6 animate-pulse">
                             ATLAS 7
                         </h1>
                         <div class="flex items-center justify-end space-x-4">
@@ -328,14 +329,15 @@
         <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
             
             <!-- Project Card 01 (Flagship / 60% Width Representation) -->
-            <div class="portfolio-item built md:col-span-8 flex flex-col group cursor-pointer" onclick="openCaseStudy('horizon-residence')">
+            <div class="portfolio-item built md:col-span-8 flex flex-col group cursor-pointer animate-fade-in" onclick="openCaseStudy('horizon-residence')">
                 <div class="w-full aspect-[16:10] overflow-hidden rounded-2xl relative bg-atlas-dark shadow-md">
-                    <img src="images/horisonreidence.jpg" 
+                    <img src="horisonreidence.jpg" 
                          alt="The Horizon Residence" 
                          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                         loading="lazy">
+                         loading="lazy"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/15">
                         FLAGSHIP / REALIZED
                     </div>
                 </div>
@@ -356,7 +358,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                          loading="lazy">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <div class="absolute top-6 right-6 bg-atlas-gold text-white text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                    <div class="absolute top-6 right-6 bg-atlas-gold text-white text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/15">
                         SPECULATIVE CONCEPT
                     </div>
                 </div>
@@ -377,7 +379,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                          loading="lazy">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/15">
                         REALIZED COMMERCIAL
                     </div>
                 </div>
@@ -398,7 +400,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                          loading="lazy">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full">
+                    <div class="absolute top-6 right-6 bg-atlas-dark/80 dark:bg-black/80 backdrop-blur-glass text-white dark:text-atlas-bg text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/15">
                         INTERIOR RESIDENCE
                     </div>
                 </div>
@@ -415,7 +417,7 @@
     </section>
 
     <!-- Section 03: Interactive Before/After Transformation Slider -->
-    <section class="py-24 bg-atlas-dark text-white overflow-hidden border-b border-atlas-stone/10">
+    <section class="py-24 bg-[#0B0C0E] text-white overflow-hidden border-b border-atlas-stone/10">
         <div class="max-w-6xl mx-auto px-6 md:px-20">
             <div class="max-w-xl mb-12">
                 <span class="text-xs font-semibold tracking-[0.2em] text-atlas-gold uppercase mb-2 block">TECHNICAL PRECISION</span>
@@ -461,7 +463,7 @@
 
                 <!-- After Image Panel (Twilight Render Landscape) -->
                 <div class="absolute inset-0 bg-cover bg-center" id="after-panel"
-                     style="background-image: url('images/horisonreidence.jpg'); width: 50%;">
+                     style="background-image: url('horisonreidence.jpg'); width: 50%;">
                 </div>
 
                 <!-- The Split Slider Control Line Overlay -->
@@ -493,7 +495,7 @@
                 <h2 class="font-serif text-3xl md:text-5xl font-light tracking-tight mb-8 text-white">Exhibition of Form</h2>
                 
                 <div class="flex flex-col space-y-3" id="video-menu">
-                    <!-- Project item 1 -->
+                    <!-- Project item 1 (The Horizon Residence) -->
                     <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-atlas-gold/40 transition-all duration-300 active"
                             data-video="videos/render1.mp4" 
                             data-poster="horisonreidence.jpg"
@@ -506,7 +508,7 @@
                             <span class="block text-xs text-atlas-stone/60 font-sans mt-0.5">Flagship Realized Walkthrough</span>
                         </div>
                     </button>
-                    <!-- Project item 2 -->
+                    <!-- Project item 2 (Modern Luxury Complex) -->
                     <button class="video-menu-btn group flex items-start text-left py-4 px-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-atlas-gold/40 transition-all duration-300"
                             data-video="videos/render2.mp4" 
                             data-poster="ChatGPT Image May 31, 2026, 08_57_18 PM.png"
@@ -565,7 +567,7 @@
             <div class="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2 z-10">
                 <div class="relative w-full aspect-[16:9] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/50 group/theatre">
                     
-                    <!-- Seamless Dynamic Video Layer -->
+                    <!-- Seamless Dynamic Video Layer with explicit autoplay/muted bypass guidelines -->
                     <video id="exhibition-video-player" 
                            class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" 
                            autoplay loop muted playsinline 
@@ -917,7 +919,7 @@
                 </div>
 
                 <div class="mt-12 space-y-8">
-                    <!-- Headquarter Coordinate Row -->
+                    <!-- Headquarter Coordinate Row - Redundant map routing directly active -->
                     <a href="https://maps.app.goo.gl/mC8tdyWpgq5oBJNs5" target="_blank" class="flex items-start space-x-4 group/map">
                         <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-atlas-gold shrink-0 group-hover/map:border-atlas-gold transition-all duration-300">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -978,12 +980,14 @@
                         </div>
                     </div>
 
-                    <!-- Interactive Architectural Map Frame -->
+                    <!-- Interactive Architectural Map Frame Bypass Direct Redirect Routing -->
                     <a href="https://maps.app.goo.gl/mC8tdyWpgq5oBJNs5" target="_blank" class="mt-8 rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-2 shadow-2xl relative group block hover:border-atlas-gold transition-all duration-500">
                         <!-- Subtle blueprint atmospheric vignette -->
                         <div class="absolute inset-0 bg-gradient-to-t from-atlas-dark via-transparent to-transparent pointer-events-none z-10"></div>
+                        
+                        <!-- Map Viewport with absolute pointer override to avoid click absorption -->
                         <div class="relative w-full h-48 rounded-xl overflow-hidden grayscale contrast-125 opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-700 pointer-events-none">
-                            <!-- Direct embed mapping coordinates pointing exactly to Atlas-7 Architects, Adama, Ethiopia HQ -->
+                            <!-- Direct pinpoint embed focusing precisely on Atlas-7 Architects in Adama, Ethiopia -->
                             <iframe 
                                 src="https://maps.google.com/maps?q=Atlas-7%20Architects,%20Adama,%20Oromia,%20Ethiopia&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                                 width="100%" 
@@ -1150,7 +1154,6 @@
         </div>
     </footer>
 
-
     <!-- Case Study Dynamic Sliding Drawer Template -->
     <div id="case-study-drawer" class="fixed inset-y-0 right-0 w-full md:max-w-4xl bg-atlas-bg dark:bg-atlas-dark z-50 transform translate-x-full transition-transform duration-500 ease-out shadow-2xl overflow-y-auto hidden">
         
@@ -1310,7 +1313,7 @@
                 title: "The Horizon Residence",
                 code: "CASE STUDY 01 / HORIZON RESIDENCE",
                 meta: "Adama, Ethiopia &bull; Realized Residence &bull; 2025",
-                heroImage: "images/horisonreidence.jpg",
+                heroImage: "horisonreidence.jpg",
                 gallery1: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
                 gallery2: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
                 desc1: "How do you introduce intimate luxury into a high-density urban context while maximizing natural light across a multi-level footprint? For this premier residential commission in Adama, the objective was to move away from traditional, heavy boundary walls.",
@@ -1326,7 +1329,7 @@
                 code: "CASE STUDY 02 / VERTEX VILLA",
                 meta: "Adama, Ethiopia &bull; Conceptual Model &bull; 2026",
                 heroImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-                gallery1: "images/horisonreidence.jpg",
+                gallery1: "horisonreidence.jpg",
                 gallery2: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
                 desc1: "Situated on a highly visible hillside terrain in Adama, the design for The Vertex Villa explores a play of raw concrete textures, dramatic overhangs, and large glass exposures designed to naturally harvest daylight while maintaining privacy.",
                 desc2: "This speculative home relies heavily on custom thermodynamic ventilation paths to completely reduce mechanical cooling dependency. Deep cantilever roof sections minimize harsh mid-day solar gains, keeping the inside highly tempered year-round.",
@@ -1341,7 +1344,7 @@
                 code: "CASE STUDY 03 / NEXUS ATRIUM",
                 meta: "Oromia, Ethiopia &bull; Mixed-Use Built &bull; 2024",
                 heroImage: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
-                gallery1: "images/horisonreidence.jpg",
+                gallery1: "horisonreidence.jpg",
                 gallery2: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
                 desc1: "The Nexus Atrium was designed as an iconic commercial destination addressing Oromia's rapid economic and physical development. Key objectives centered on structural robustness, structural modular flexibility, and dynamic street engagement.",
                 desc2: "The design features a massive internal light void designed as a public courtyard. Retail nodes occupy lower ground levels with private professional consultancies scaling vertically around the spatial canyon, ensuring robust ventilation and light.",
@@ -1357,7 +1360,7 @@
                 meta: "Adama, Ethiopia &bull; Concept Interior &bull; 2026",
                 heroImage: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80",
                 gallery1: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
-                gallery2: "images/horisonreidence.jpg",
+                gallery2: "horisonreidence.jpg",
                 desc1: "Designed as an oasis for urban family living, Sky Courtyard turns the house inside-out, placing a highly landscaped light well as the absolute focal anchor. Public lounge spaces surround the atrium space seamlessly.",
                 desc2: "Natural, tactile materials (concrete terrazzo, local warm timber accents, raw plaster walls) evoke a sense of grounding and tranquility, creating a clean geometric landscape that will stand the test of time.",
                 specTypology: "Interior Architecture",
